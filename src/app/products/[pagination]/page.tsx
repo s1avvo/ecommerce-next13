@@ -1,6 +1,5 @@
-import React from "react";
-import { ProductList } from "@/components/organisms/ProductList";
 import { getProductsListPagination } from "@/api/getProductsList";
+import { ProductList } from "@/components/organisms/ProductList";
 import { Pagination } from "@/components/organisms/Pagination";
 
 type ParamsProps = {
