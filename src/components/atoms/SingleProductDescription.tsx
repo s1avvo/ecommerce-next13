@@ -1,4 +1,3 @@
-import React from "react";
 import { type ProductListItemType } from "@/components/types";
 import { formatPrice } from "@/utils";
 

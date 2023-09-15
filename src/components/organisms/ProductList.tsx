@@ -1,4 +1,4 @@
-import type { ProductListItemType } from "@/components/types";
+import { type ProductListItemType } from "@/components/types";
 import { ProductListItem } from "@/components/molecules/ProductListItem";
 
 type ProductsListProps = {
