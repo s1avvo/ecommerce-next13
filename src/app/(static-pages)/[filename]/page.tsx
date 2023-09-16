@@ -11,8 +11,7 @@ export default async function StaticPage({ params }: StaticPageProps) {
 		(module: { default: ComponentType }) => module.default,
 	);
 	return (
-		<article className="prose prose-neutral">
-			<h1 className="text-center">Privacy Policy</h1>
+		<article className="prose prose-neutral px-6">
 			<Page />
 		</article>
 	);
