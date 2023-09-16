@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+	pageExtensions: ["ts", "tsx", "mdx"],
+
 	experimental: {
 		typedRoutes: true,
 		mdxRs: true,
 	},
-
-	pageExtensions: ["ts", "tsx", "markdown", ""],
 
 	async redirects() {
 		return [
