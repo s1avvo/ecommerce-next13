@@ -1,16 +1,11 @@
 import "./globals.css";
 import React from "react";
-import type { Metadata, Route } from "next";
+import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { MagnifyingGlassIcon, ShoppingBagIcon, UserIcon } from "@heroicons/react/24/outline";
-import { ActiveLink } from "@/components/atoms/ActiveLink";
+import { Header } from "@/components/organisms/Header";
+import { Footer } from "@/components/organisms/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
-
-const navbarList: { href: Route<string>; title: string; exact?: boolean }[] = [
-	{ href: "/", title: "Home", exact: true },
-	{ href: "/products", title: "All" },
-];
 
 export const metadata: Metadata = {
 	title: "Ecommerce",
@@ -21,29 +16,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<header className="bg-wh-900 text-wh-10 flex w-full items-center justify-between px-6 py-4 sm:px-36">
-					<div className="text-amber-600">ECOMMERCE</div>
-					<nav>
-						<ul className="flex justify-between gap-6">
-							{navbarList.map(({ href, title, exact }, index) => (
-								<li key={index}>
-									<ActiveLink href={href} exact={exact}>
-										{title}
-									</ActiveLink>
-								</li>
-							))}
-						</ul>
-					</nav>
-					<div className="flex justify-between gap-6">
-						<MagnifyingGlassIcon className="h-5 w-5 text-neutral-800" />
-						<UserIcon className="h-5 w-5 text-neutral-800" />
-						<ShoppingBagIcon className="h-5 w-5 text-neutral-800" />
-					</div>
-				</header>
+				<Header />
 				{children}
-				<footer className="bg-wh-900 text-wh-10 flex w-full items-center justify-center px-36 py-4">
-					&copy;2023
-				</footer>
+				<Footer />
 			</body>
 		</html>
 	);

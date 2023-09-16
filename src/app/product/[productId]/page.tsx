@@ -4,12 +4,12 @@ import { getProductById } from "@/api/getProductsList";
 import { SingleProduct } from "@/components/organisms/SingleProduct";
 import { SuggestedProductList } from "@/components/organisms/SuggestedProductList";
 
-type ParamsProps = {
+type ProductProps = {
 	params: {
 		productId: string;
 	};
 };
-export const generateMetadata = async ({ params }: ParamsProps): Promise<Metadata> => {
+export const generateMetadata = async ({ params }: ProductProps): Promise<Metadata> => {
 	const product = await getProductById(params.productId);
 
 	return {
@@ -18,7 +18,7 @@ export const generateMetadata = async ({ params }: ParamsProps): Promise<Metadat
 	};
 };
 
-export default async function Product({ params }: ParamsProps) {
+export default async function Product({ params }: ProductProps) {
 	const product = await getProductById(params.productId);
 
 	return (
