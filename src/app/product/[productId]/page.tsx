@@ -24,13 +24,11 @@ export default async function Product({ params }: ProductProps) {
 	return (
 		<>
 			<SingleProduct product={product} />
-			<aside>
-				<div className="my-5 mt-5 w-full px-6 sm:px-36">
-					<h3 className="text-2xl">Related Products</h3>
-					<Suspense fallback={"Loading..."}>
-						<SuggestedProductList />
-					</Suspense>
-				</div>
+			<aside className="my-6 w-full px-6 sm:px-36">
+				<h2 className="border-b-2 text-2xl font-semibold">Related Products</h2>
+				<Suspense fallback={"Loading..."}>
+					<SuggestedProductList />
+				</Suspense>
 			</aside>
 		</>
 	);
