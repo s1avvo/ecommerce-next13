@@ -4,6 +4,8 @@ import { ActiveLink } from "@/components/atoms/ActiveLink";
 const navbarList: { href: Route<string>; title: string; exact?: boolean }[] = [
 	{ href: "/", title: "Home", exact: true },
 	{ href: "/products", title: "All" },
+	{ href: "/products/t-shirts", title: "T-Shirts" },
+	{ href: "/products/hoodies", title: "Hoodies" },
 ];
 export const Navbar = () => {
 	return (
