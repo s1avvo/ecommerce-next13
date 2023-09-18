@@ -1,10 +1,12 @@
-import { getProductsListPagination } from "@/api/getProductsList";
+import { notFound } from "next/navigation";
 import { ProductList } from "@/components/organisms/ProductList";
 import { Pagination } from "@/components/organisms/Pagination";
+import { getProductsListByCategorySlug } from "@/api/getProductsList";
 
-type ProductsPaginationProps = {
+type ProductsCategoryPageProps = {
 	params: {
-		pagination: string;
+		pageNumber: string;
+		category: string;
 	};
 };
 
@@ -14,15 +16,19 @@ export const generateStaticParams = async () => {
 	}));
 };
 
-export default async function ProductsPagination({ params }: ProductsPaginationProps) {
-	const { pagination = "1" } = params;
+export default async function ProductsCategoryPage({ params }: ProductsCategoryPageProps) {
+	const { pageNumber = "1", category } = params;
 
 	const total = 100;
 	const limit = 10;
-	const currentPage = Number(pagination);
-	const offset = limit * currentPage - limit;
+	const currentPage = Number(pageNumber);
+	// const offset = limit * currentPage - limit;
 
-	const products = await getProductsListPagination(limit, offset);
+	const products = await getProductsListByCategorySlug(category);
+
+	if (!products) {
+		return notFound();
+	}
 
 	return (
 		/*className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8"*/
