@@ -1,0 +1,33 @@
+fragment SingleProductItem on Product {
+	id
+	name
+	price
+	description
+	categories(first: 1) {
+		name
+	}
+	images(first: 1) {
+		url
+		height
+		width
+	}
+}
+
+fragment SingleProductSizeColorVariant on ProductSizeColorVariant {
+	id
+	name
+	color
+	size
+}
+
+fragment SingleProductColorVariant on ProductColorVariant {
+	id
+	name
+	color
+}
+
+fragment SingleProductSizeVariant on ProductSizeVariant {
+	id
+	name
+	size
+}

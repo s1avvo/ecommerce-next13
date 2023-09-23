@@ -1,6 +1,6 @@
 query ProductGetById($id: ID!) {
 	product(where: {id: $id}) {
-		...ProductListItem
+		...SingleProductItem
 	}
 }
 
