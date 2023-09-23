@@ -1,13 +1,14 @@
 import React from "react";
+import { type SingleProductItemFragment } from "@/gql/graphql";
 import { AddToCart } from "@/components/atoms/AddToCart";
 import { ProductListItemImage } from "@/components/atoms/ProductListItemImage";
 import { SingleProductDescription } from "@/components/atoms/SingleProductDescription";
-import { type ProductListItemFragment } from "@/gql/graphql";
+import { SingleProductVariantsList } from "@/components/molecules/SingleProductVariantsList";
 
 type SingleProductItemProps = {
-	product: ProductListItemFragment;
+	product: SingleProductItemFragment;
 };
-export const SingleProduct = ({ product }: SingleProductItemProps) => {
+export const SingleProduct = async ({ product }: SingleProductItemProps) => {
 	return (
 		<section className="grid gap-3 px-6 py-6 sm:grid-cols-3 sm:px-36">
 			<div className="max-h-96 sm:col-span-1">
@@ -17,6 +18,7 @@ export const SingleProduct = ({ product }: SingleProductItemProps) => {
 			</div>
 			<article className="prose mx-5 sm:col-span-2">
 				<SingleProductDescription product={product} />
+				<SingleProductVariantsList product={product} />
 				<AddToCart />
 			</article>
 		</section>

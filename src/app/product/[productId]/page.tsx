@@ -1,7 +1,8 @@
 import React, { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { type Metadata } from "next";
-import { getProductById } from "@/api/getProductsList";
+import { getProductsSuggestedList } from "@/api/getProductsList";
+import { getProductById } from "@/api/getProductItem";
 import { SingleProduct } from "@/components/organisms/SingleProduct";
 import { SuggestedProductList } from "@/components/organisms/SuggestedProductList";
 
@@ -26,15 +27,21 @@ export default async function Product({ params }: ProductProps) {
 		return notFound();
 	}
 
+	const suggestedProducts = product.categories[0]
+		? await getProductsSuggestedList(product.categories[0].name)
+		: null;
+
 	return (
 		<>
 			<SingleProduct product={product} />
-			<aside className="my-6 w-full px-6 sm:px-36">
-				<h2 className="border-b-2 text-2xl font-semibold">Related Products</h2>
-				<Suspense fallback={"Loading..."}>
-					<SuggestedProductList />
-				</Suspense>
-			</aside>
+			{suggestedProducts && (
+				<aside className="my-6 w-full px-6 sm:px-36" data-testid="related-products">
+					<h2 className="border-b-2 text-2xl font-semibold">Related Products</h2>
+					<Suspense fallback={"Loading..."}>
+						<SuggestedProductList products={suggestedProducts} />
+					</Suspense>
+				</aside>
+			)}
 		</>
 	);
 }

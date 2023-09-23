@@ -6,7 +6,7 @@ export const AddToCart = () => {
 	const [counter, setCounter] = useState(0);
 
 	return (
-		<div className="flex">
+		<div className="mt-10 flex">
 			<div className="flex items-center justify-between gap-5">
 				<MinusIcon
 					className="box-content h-5 w-5  cursor-pointer p-2"
