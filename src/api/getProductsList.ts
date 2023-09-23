@@ -1,38 +1,62 @@
 import {
 	ProductGetListDocument,
 	ProductsGetListByCategorySlagDocument,
-	ProductGetByIdDocument,
-	type ProductListItemFragment,
+	ProductsGetListByCollectionSlagDocument,
+	ProductsGetSuggestedListDocument,
+	ProductsCountDocument,
+	ProductsGetListSearchDocument,
 } from "@/gql/graphql";
 import { executeGraphql } from "@/api/graphqlApi";
 
-export const getProductsList = async () => {
-	const graphqlResponse = await executeGraphql(ProductGetListDocument, {});
+export const getProductsList = async (limit: number, offset: number) => {
+	const graphqlResponse = await executeGraphql(ProductGetListDocument, {
+		limit,
+		offset,
+	});
 
-	return graphqlResponse.products;
+	return graphqlResponse.productsConnection;
 };
 
-export const getProductsListByCategorySlug = async (category: string) => {
+export const getProductsListByCategorySlug = async (
+	category: string,
+	limit: number,
+	offset: number,
+) => {
 	const graphqlResponse = await executeGraphql(ProductsGetListByCategorySlagDocument, {
 		slag: category,
+		limit,
+		offset,
+	});
+
+	return graphqlResponse.productsConnection;
+};
+
+export const getProductsListByCollectionSlag = async (collection: string) => {
+	const graphqlResponse = await executeGraphql(ProductsGetListByCollectionSlagDocument, {
+		slag: collection,
 	});
 
 	return graphqlResponse.products;
 };
 
-export const getProductById = async (id: ProductListItemFragment["id"]) => {
-	const graphqlResponse = await executeGraphql(ProductGetByIdDocument, {
-		id: id,
+export const getProductsSuggestedList = async (collection: string) => {
+	const graphqlResponse = await executeGraphql(ProductsGetSuggestedListDocument, {
+		name: collection,
 	});
 
-	return graphqlResponse.product;
+	return graphqlResponse.products;
 };
 
-// export const getProductsListPagination = async (limit: number, offset: number) => {
-// 	const res = await fetch(
-// 		`https://naszsklep-api.vercel.app/api/products?take=${limit}&&offset=${offset}`,
-// 	);
-// 	const productsResponse = (await res.json()) as ProductResponseItem[];
+export const getProductsCount = async () => {
+	const graphqlResponse = await executeGraphql(ProductsCountDocument, {});
 
-// 	return productsResponse.map(productResponseItemToProductListItem);
-// };
+	return graphqlResponse.productsConnection.aggregate.count;
+};
+
+export const getSearchProductsList = async (search: string) => {
+	const graphqlResponse = await executeGraphql(ProductsGetListSearchDocument, {
+		search,
+	});
+
+	return graphqlResponse.products;
+};
