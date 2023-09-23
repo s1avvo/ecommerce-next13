@@ -1,11 +1,13 @@
+import { type Route } from "next";
 import { ActiveLink } from "@/components/atoms/ActiveLink";
 
 type PaginationListItemProps = {
 	currentPage: number;
 	pages: number;
+	href: Route<string>;
 };
 
-export const PaginationListItem = ({ currentPage, pages }: PaginationListItemProps) => {
+export const PaginationListItem = ({ currentPage, pages, href }: PaginationListItemProps) => {
 	return (
 		<>
 			{Array.from(
@@ -16,7 +18,7 @@ export const PaginationListItem = ({ currentPage, pages }: PaginationListItemPro
 				return (
 					<li key={page}>
 						<ActiveLink
-							href={`/products/${page}`}
+							href={`${href}/${page}` as Route}
 							className="p-3 text-neutral-600 hover:text-neutral-800"
 							activeClassName="font-semibold border-t-2 border-neutral-600 hover:text-neutral-800"
 							exact

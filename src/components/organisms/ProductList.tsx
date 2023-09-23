@@ -2,6 +2,9 @@ import { ProductListItem } from "@/components/molecules/ProductListItem";
 import { type ProductListItemFragment } from "@/gql/graphql";
 
 type ProductsListProps = {
+	// products: {
+	// 	node: ProductListItemFragment;
+	// }[];
 	products: ProductListItemFragment[];
 };
 
