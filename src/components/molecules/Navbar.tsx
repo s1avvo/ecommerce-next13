@@ -1,13 +1,13 @@
 import { type Route } from "next";
 import { ActiveLink } from "@/components/atoms/ActiveLink";
+import { getCategories } from "@/api/getCategoriesList";
 
 const navbarList: { href: Route<string>; title: string; exact?: boolean }[] = [
 	{ href: "/", title: "Home", exact: true },
 	{ href: "/products", title: "All" },
-	{ href: "/products/t-shirts", title: "T-Shirts" },
-	{ href: "/products/hoodies", title: "Hoodies" },
 ];
-export const Navbar = () => {
+export const Navbar = async () => {
+	const categories = await getCategories();
 	return (
 		<nav>
 			<ul className="flex justify-between gap-6">
@@ -16,6 +16,11 @@ export const Navbar = () => {
 						<ActiveLink href={href} exact={exact}>
 							{title}
 						</ActiveLink>
+					</li>
+				))}
+				{categories.map((value) => (
+					<li key={value.id}>
+						<ActiveLink href={`/categories/${value.slug}` as Route}>{value.name}</ActiveLink>
 					</li>
 				))}
 			</ul>
