@@ -6,8 +6,6 @@ fragment ProductListItem on Product {
 		name
 	}
 	images(first: 1) {
-		url
-		height
-		width
+		...ProductImage
 	}
 }
