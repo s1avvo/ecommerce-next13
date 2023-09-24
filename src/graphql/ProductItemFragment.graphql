@@ -14,18 +14,14 @@ fragment SingleProductItem on Product {
 fragment SingleProductSizeColorVariant on ProductSizeColorVariant {
 	id
 	name
-	color
-	size
 }
 
 fragment SingleProductColorVariant on ProductColorVariant {
 	id
 	name
-	color
 }
 
 fragment SingleProductSizeVariant on ProductSizeVariant {
 	id
 	name
-	size
 }
