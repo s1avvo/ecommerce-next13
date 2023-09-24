@@ -9,5 +9,12 @@ type SuggestedProductListProps = {
 };
 export const SuggestedProductList = async ({ products }: SuggestedProductListProps) => {
 	// await sleep(5000);
-	return <ProductList products={products} />;
+	return (
+		<>
+			<div className="px-6 sm:px-36">
+				<h2 className="border-b-2 text-2xl font-semibold">Related Products</h2>
+			</div>
+			<ProductList products={products} />
+		</>
+	);
 };

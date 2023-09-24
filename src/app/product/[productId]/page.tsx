@@ -35,8 +35,7 @@ export default async function Product({ params }: ProductProps) {
 		<>
 			<SingleProduct product={product} />
 			{suggestedProducts && (
-				<aside className="my-6 w-full px-6 sm:px-36" data-testid="related-products">
-					<h2 className="border-b-2 text-2xl font-semibold">Related Products</h2>
+				<aside data-testid="related-products">
 					<Suspense fallback={"Loading..."}>
 						<SuggestedProductList products={suggestedProducts} />
 					</Suspense>

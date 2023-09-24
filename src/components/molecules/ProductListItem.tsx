@@ -12,12 +12,9 @@ export const ProductListItem = ({ product }: ProductListItemProps) => {
 		<li>
 			<Link href={`/product/${product.id}`}>
 				<article>
-					<div className="relative mx-auto h-[320px] max-w-[220px] p-6">
-						{product.images[0] && (
-							<ProductListItemImage src={product.images[0].url} alt={product.name} />
-						)}
-						{/*<ProductListItemFavorite /> TODO: to fix*/}
-					</div>
+					{product.images[0] && (
+						<ProductListItemImage src={product.images[0].url} alt={product.name} />
+					)}
 					{/* można zapisać krócej przez destrukturyzacje: {...product.image} */}
 					<ProductListItemDescription product={product} />
 				</article>
