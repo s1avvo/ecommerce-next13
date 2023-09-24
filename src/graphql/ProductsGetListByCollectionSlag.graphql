@@ -1,0 +1,5 @@
+query ProductsGetListByCollectionSlag($slag: String!) {
+	products(where: { collections_some: { slug: $slag } }) {
+		...ProductListItem
+	}
+}

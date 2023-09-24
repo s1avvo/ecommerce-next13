@@ -7,12 +7,36 @@ const nextConfig = {
 		mdxRs: true,
 	},
 
+	images: {
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "media.graphassets.com",
+			},
+		],
+	},
+
 	async redirects() {
 		return [
 			{
 				source: "/products",
 				destination: "/products/1",
-				permanent: true,
+				permanent: false,
+			},
+			{
+				source: "/categories/t-shirts",
+				destination: "/categories/t-shirts/1",
+				permanent: false,
+			},
+			{
+				source: "/categories/hoodies",
+				destination: "/categories/hoodies/1",
+				permanent: false,
+			},
+			{
+				source: "/categories/accessories",
+				destination: "/categories/accessories/1",
+				permanent: false,
 			},
 		];
 	},

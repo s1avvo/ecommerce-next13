@@ -1,0 +1,17 @@
+query ProductsGetListByCategorySlag($slag: String!, $limit: Int!, $offset: Int!) {
+	productsConnection(
+		where: {categories_some: {slug: $slag}}
+		first: $limit
+		skip: $offset
+	) {
+		products: edges {
+			node {
+				...ProductListItem
+			}
+		}
+		pageInfo {
+			hasNextPage
+			hasPreviousPage
+		}
+	}
+}

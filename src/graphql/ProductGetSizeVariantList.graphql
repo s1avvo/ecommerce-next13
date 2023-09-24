@@ -1,0 +1,9 @@
+query ProductGetSizeVariantList($id: ID!) {
+	product(where: {id: $id}) {
+		variants {
+			... on ProductSizeVariant {
+				...SingleProductSizeVariant
+			}
+		}
+	}
+}
