@@ -19,7 +19,7 @@ export const SingleProduct = async ({ product }: SingleProductItemProps) => {
 			<article className="prose mx-5 sm:col-span-2">
 				<SingleProductDescription product={product} />
 				<SingleProductVariantsList product={product} />
-				<AddToCart />
+				<AddToCart product={product} />
 			</article>
 		</section>
 	);

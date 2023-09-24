@@ -1,9 +1,0 @@
-query ProductGetSizeColorVariantList($id: ID!) {
-	product(where: {id: $id}) {
-		variants {
-			... on ProductSizeColorVariant {
-				...SingleProductSizeColorVariant
-			}
-		}
-	}
-}
