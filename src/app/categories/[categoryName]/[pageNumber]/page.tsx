@@ -1,7 +1,7 @@
 import { type Metadata, type Route } from "next";
 import { notFound } from "next/navigation";
 import { Pagination } from "@/components/organisms/Pagination";
-import { getProductsCount, getProductsListByCategorySlug } from "@/api/getProductsList";
+import { getProductsCountInCategory, getProductsListByCategorySlug } from "@/api/getProductsList";
 import { ProductList } from "@/components/organisms/ProductList";
 import { getCategoriesBySlug } from "@/api/getCategoriesList";
 
@@ -37,14 +37,12 @@ export default async function ProductsCategoryPage({ params }: ProductsCategoryP
 	const offset = (currentPage - 1) * LIMIT;
 
 	const productsPagination = await getProductsListByCategorySlug(categoryName, LIMIT, offset);
-	const totalPages = await getProductsCount();
-
 	if (!productsPagination || productsPagination.products.length === 0) {
 		return notFound();
 	}
-
 	const products = productsPagination.products.map((v) => v.node);
-	const category = await getCategoriesBySlug(params.categoryName);
+	const productsCount = await getProductsCountInCategory(categoryName);
+	const category = await getCategoriesBySlug(categoryName);
 
 	return (
 		/*className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8"*/
@@ -54,7 +52,7 @@ export default async function ProductsCategoryPage({ params }: ProductsCategoryP
 			<Pagination
 				limit={LIMIT}
 				currentPage={currentPage}
-				totalPages={totalPages}
+				productsCount={productsCount || 0}
 				href={`/categories/${categoryName}` as Route}
 				pageInfo={productsPagination.pageInfo}
 			/>

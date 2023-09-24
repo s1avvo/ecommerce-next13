@@ -7,18 +7,18 @@ import { PaginationListItem } from "@/components/molecules/PaginationListItem";
 type PaginationProps = {
 	limit: number;
 	currentPage: number;
-	totalPages: number;
+	productsCount: number;
 	href: Route<string>;
 	pageInfo: PageInfo;
 };
 export const Pagination = async ({
-	totalPages,
+	productsCount,
 	currentPage,
 	limit,
 	href,
 	pageInfo,
 }: PaginationProps) => {
-	const pages = Math.ceil(totalPages / limit);
+	const pages = Math.ceil(productsCount / limit);
 
 	return (
 		<section>

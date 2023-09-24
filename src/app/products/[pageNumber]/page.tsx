@@ -27,14 +27,12 @@ export default async function ProductsPage({ params }: ProductsCategoryPageProps
 	const currentPage = Number(pageNumber);
 	const offset = (currentPage - 1) * LIMIT;
 
-	const totalPages = await getProductsCount();
 	const productsPagination = await getProductsList(LIMIT, offset);
-
 	if (!productsPagination || productsPagination.products.length === 0) {
 		return notFound();
 	}
-
 	const products = productsPagination.products.map((v) => v.node);
+	const productsCount = await getProductsCount();
 
 	return (
 		/*className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8"*/
@@ -43,7 +41,7 @@ export default async function ProductsPage({ params }: ProductsCategoryPageProps
 			<Pagination
 				limit={LIMIT}
 				currentPage={currentPage}
-				totalPages={totalPages}
+				productsCount={productsCount}
 				href={"/products" as Route}
 				pageInfo={productsPagination.pageInfo}
 			/>

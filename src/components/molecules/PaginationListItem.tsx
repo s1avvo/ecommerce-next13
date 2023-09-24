@@ -10,10 +10,10 @@ type PaginationListItemProps = {
 export const PaginationListItem = ({ currentPage, pages, href }: PaginationListItemProps) => {
 	return (
 		<>
-			{Array.from(
-				{ length: 3 },
-				(_, i) =>
-					i - (currentPage === 1 ? 0 : 1) + (currentPage < pages ? currentPage : currentPage - 1),
+			{Array.from({ length: Math.min(pages, 3) }, (_, i) =>
+				pages >= 3
+					? i - (currentPage === 1 ? 0 : 1) + (currentPage < pages ? currentPage : currentPage - 1)
+					: i + 1,
 			).map((page) => {
 				return (
 					<li key={page}>
