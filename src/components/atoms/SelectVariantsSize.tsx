@@ -22,9 +22,7 @@ export const SelectVariantsSize = ({ size }: SelectVariantsSizeProps) => {
 						router.push(`${pathname}?size=${event.target.value}`.toString() as Route)
 					}
 				>
-					<option disabled selected>
-						Size
-					</option>
+					<option disabled>Size</option>
 					{size.map((v) => (
 						<option key={v.id} value={v.name}>
 							{v.size}

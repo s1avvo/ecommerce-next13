@@ -35,9 +35,7 @@ export const SelectVariantsSizeAndColor = ({ sizeAndColor }: SelectVariantsSizeA
 						)
 					}
 				>
-					<option disabled selected>
-						Size/Color
-					</option>
+					<option disabled>Size/Color</option>
 					{sizeAndColor.map((v) => (
 						<option key={v.id} value={v.name}>
 							{v.size}/{v.color}
