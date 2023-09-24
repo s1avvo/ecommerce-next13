@@ -5,6 +5,7 @@ import {
 	ProductsGetSuggestedListDocument,
 	ProductsCountDocument,
 	ProductsGetListSearchDocument,
+	ProductsCountByCategorySlugDocument,
 } from "@/gql/graphql";
 import { executeGraphql } from "@/api/graphqlApi";
 
@@ -51,6 +52,14 @@ export const getProductsCount = async () => {
 	const graphqlResponse = await executeGraphql(ProductsCountDocument, {});
 
 	return graphqlResponse.productsConnection.aggregate.count;
+};
+
+export const getProductsCountInCategory = async (slug: string) => {
+	const graphqlResponse = await executeGraphql(ProductsCountByCategorySlugDocument, {
+		slug,
+	});
+
+	return graphqlResponse.categories[0]?.products.length;
 };
 
 export const getSearchProductsList = async (search: string) => {
