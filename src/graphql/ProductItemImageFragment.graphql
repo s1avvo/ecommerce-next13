@@ -1,0 +1,4 @@
+fragment ProductImage on Asset {
+	url
+	fileName
+}
