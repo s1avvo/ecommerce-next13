@@ -7,6 +7,15 @@ const nextConfig = {
 		mdxRs: true,
 	},
 
+	images: {
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "media.graphassets.com",
+			},
+		],
+	},
+
 	async redirects() {
 		return [
 			{
