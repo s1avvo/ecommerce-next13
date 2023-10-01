@@ -18,6 +18,7 @@ export const ProductListItemImage = ({ src, alt }: ProductListItemImageProps) =>
                 (max-width: 1060px) 50vw,
                 33vw"
 				className="object-contain object-center transition-transform hover:opacity-70"
+				priority
 			/>
 		</div>
 	);
