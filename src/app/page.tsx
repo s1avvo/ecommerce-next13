@@ -7,7 +7,7 @@ export default async function Home() {
 	const collections = await getCollections();
 
 	/*Products for TEST*/
-	const productsWithPagination = await getProductsList(10, 0);
+	const productsWithPagination = await getProductsList(10, 0, undefined);
 	const products = productsWithPagination.products.map((v) => v.node);
 
 	return (
