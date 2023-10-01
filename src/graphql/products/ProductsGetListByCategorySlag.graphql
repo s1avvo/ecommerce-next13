@@ -1,8 +1,9 @@
-query ProductsGetListByCategorySlag($slag: String!, $limit: Int!, $offset: Int!) {
+query ProductsGetListByCategorySlag($slag: String!, $limit: Int!, $offset: Int!, $orderBy: ProductOrderByInput) {
 	productsConnection(
 		where: {categories_some: {slug: $slag}}
 		first: $limit
 		skip: $offset
+		orderBy: $orderBy
 	) {
 		products: edges {
 			node {

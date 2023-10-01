@@ -31,6 +31,7 @@ export const getProductsListByCategorySlug = async (
 	category: string,
 	limit: number,
 	offset: number,
+	orderBy: ProductOrderByInput | undefined,
 ) => {
 	const graphqlResponse = await executeGraphql({
 		query: ProductsGetListByCategorySlagDocument,
@@ -38,6 +39,7 @@ export const getProductsListByCategorySlug = async (
 			slag: category,
 			limit,
 			offset,
+			orderBy,
 		},
 	});
 

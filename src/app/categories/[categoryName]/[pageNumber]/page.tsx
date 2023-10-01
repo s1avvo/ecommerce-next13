@@ -4,13 +4,18 @@ import { Pagination } from "@/components/organisms/Pagination";
 import { getProductsCountInCategory, getProductsListByCategorySlug } from "@/api/getProductsList";
 import { ProductList } from "@/components/organisms/ProductList";
 import { getCategoriesBySlug } from "@/api/getCategoriesList";
+import { SortSelect } from "@/components/atoms/SortSelect";
+import { type ProductOrderByInput } from "@/gql/graphql";
 
-const LIMIT = 2;
+const LIMIT = 4;
 
 type ProductsCategoryPageProps = {
 	params: {
 		pageNumber: string;
 		categoryName: string;
+	};
+	searchParams: {
+		sort: ProductOrderByInput;
 	};
 };
 
@@ -24,19 +29,17 @@ export const generateMetadata = async ({
 	};
 };
 
-export const generateStaticParams = async () => {
-	return Array.from({ length: 10 }, (_, index) => ({
-		pagination: `${index + 1}`,
-	}));
-};
-
-export default async function ProductsCategoryPage({ params }: ProductsCategoryPageProps) {
+export default async function ProductsCategoryPage({
+	params,
+	searchParams,
+}: ProductsCategoryPageProps) {
 	const { pageNumber = "1", categoryName } = params;
+	const { sort } = searchParams;
 
 	const currentPage = Number(pageNumber);
 	const offset = (currentPage - 1) * LIMIT;
 
-	const productsPagination = await getProductsListByCategorySlug(categoryName, LIMIT, offset);
+	const productsPagination = await getProductsListByCategorySlug(categoryName, LIMIT, offset, sort);
 	if (!productsPagination || productsPagination.products.length === 0) {
 		return notFound();
 	}
@@ -48,6 +51,7 @@ export default async function ProductsCategoryPage({ params }: ProductsCategoryP
 		/*className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8"*/
 		<section className="flex min-h-screen flex-col items-center p-12">
 			<h2>{category?.name}</h2>
+			<SortSelect />
 			<ProductList products={products} />
 			<Pagination
 				limit={LIMIT}

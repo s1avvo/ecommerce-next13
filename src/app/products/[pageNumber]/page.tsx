@@ -22,7 +22,7 @@ export const generateStaticParams = async () => {
 	const pages = Math.ceil(productsCount / LIMIT);
 
 	return Array.from({ length: pages }, (_, index) => ({
-		pagination: `${index + 1}`,
+		pageNumber: `${index + 1}`,
 	}));
 };
 
