@@ -14,7 +14,6 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
 	children,
-	modal,
 }: {
 	children: React.ReactNode;
 	modal: React.ReactNode;
@@ -25,7 +24,6 @@ export default function RootLayout({
 				<Header />
 				{children}
 				<Footer />
-				{modal}
 			</body>
 		</html>
 	);
