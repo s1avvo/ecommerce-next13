@@ -1,0 +1,9 @@
+query ReviewGetByProductId($id: ID!) {
+    reviewsConnection(where: {product: {id: $id}} orderBy: createdAt_ASC) {
+        edges {
+            node {
+                ...ReviewItem
+            }
+        }
+    }
+}

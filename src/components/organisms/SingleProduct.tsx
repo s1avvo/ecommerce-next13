@@ -1,6 +1,6 @@
 import React from "react";
 import { type SingleProductItemFragment } from "@/gql/graphql";
-import { AddToCart } from "@/components/atoms/AddToCart";
+import { AddToCart } from "@/components/molecules/AddToCart";
 import { ProductListItemImage } from "@/components/atoms/ProductListItemImage";
 import { SingleProductDescription } from "@/components/atoms/SingleProductDescription";
 import { SingleProductVariantsList } from "@/components/molecules/SingleProductVariantsList";

@@ -1,16 +1,3 @@
-fragment SingleProductItem on Product {
-	id
-	name
-	price
-	description
-	categories(first: 1) {
-		name
-	}
-	images(first: 1) {
-		...ProductImage
-	}
-}
-
 fragment SingleProductSizeColorVariant on ProductSizeColorVariant {
 	id
 	name

@@ -1,0 +1,13 @@
+query ProductGetList($limit: Int!, $offset: Int!, $orderBy: ProductOrderByInput) {
+	productsConnection(first: $limit, skip: $offset, orderBy: $orderBy) {
+		products: edges {
+			node {
+				...ProductListItem
+			}
+		}
+		pageInfo {
+			hasNextPage
+			hasPreviousPage
+		}
+	}
+}

@@ -32,6 +32,7 @@ export const SearchInput = () => {
 	return (
 		<form className="flex justify-between gap-3" action={`/search`} onSubmit={handleSearchOnSubmit}>
 			<input
+				name="serch"
 				className="w-[200px] rounded-md border p-2 "
 				type="search"
 				role="searchbox"

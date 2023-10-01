@@ -79,7 +79,9 @@
 					"attributes": false
 				}
 			}
-		]
+		],
+
+		"react-hooks/exhaustive-deps": "off"
 	},
 	"overrides": [
 		{

@@ -1,9 +1,12 @@
-import React, { Suspense } from "react";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { type Metadata } from "next";
 import { getProductsSuggestedList } from "@/api/getProductsList";
 import { getProductById } from "@/api/getProductItem";
 import { SingleProduct } from "@/components/organisms/SingleProduct";
+import { getProductReview } from "@/api/review";
+import { Loading } from "@/components/atoms/Loading";
+import { SingleProductReview } from "@/components/organisms/SingleProductReview";
 import { SuggestedProductList } from "@/components/organisms/SuggestedProductList";
 
 type ProductProps = {
@@ -22,6 +25,7 @@ export const generateMetadata = async ({ params }: ProductProps): Promise<Metada
 
 export default async function Product({ params }: ProductProps) {
 	const product = await getProductById(params.productId);
+	const reviews = await getProductReview(params.productId);
 
 	if (!product) {
 		return notFound();
@@ -32,7 +36,7 @@ export default async function Product({ params }: ProductProps) {
 		: null;
 
 	return (
-		<>
+		<main className="min-h-screen">
 			<SingleProduct product={product} />
 			{suggestedProducts && (
 				<aside data-testid="related-products">
@@ -41,6 +45,13 @@ export default async function Product({ params }: ProductProps) {
 					</Suspense>
 				</aside>
 			)}
-		</>
+			{reviews && (
+				<aside>
+					<Suspense fallback={<Loading />}>
+						<SingleProductReview productId={params.productId} reviews={reviews} />
+					</Suspense>
+				</aside>
+			)}
+		</main>
 	);
 }
