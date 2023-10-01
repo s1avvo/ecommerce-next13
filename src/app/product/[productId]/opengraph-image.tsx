@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/server";
 import { getProductById } from "@/api/getProductItem";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 export const alt = "Ecommerce";
 export const size = {
 	width: 1200,
