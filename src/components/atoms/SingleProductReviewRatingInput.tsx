@@ -7,6 +7,7 @@ export const SingleProductReviewRatingInput = () => {
 		<>
 			<label htmlFor="rating-id">Rating</label>
 			<input
+				min="0"
 				max="5"
 				step="1"
 				type="range"
