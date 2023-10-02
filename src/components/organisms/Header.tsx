@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ShoppingBagIcon, UserIcon } from "@heroicons/react/24/outline";
 import { Navbar } from "@/components/molecules/Navbar";
 import { SearchInput } from "@/components/atoms/SearchInput";
-import { getCartByIdFromCookie } from "@/api/cart";
+import { getCartByIdFromCookie } from "@/app/api/cart";
 
 export const Header = async () => {
 	const cart = await getCartByIdFromCookie();

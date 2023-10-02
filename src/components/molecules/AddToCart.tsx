@@ -1,5 +1,5 @@
 import { type SingleProductItemFragment } from "@/gql/graphql";
-import { addOrUpdateProductToCart, getOrCreateCart } from "@/api/cart";
+import { addOrUpdateProductToCart, getOrCreateCart } from "@/app/api/cart";
 import { SubmitButton } from "@/components/atoms/SubmitButton";
 
 type AddToCartProps = {

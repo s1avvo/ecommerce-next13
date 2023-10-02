@@ -1,4 +1,4 @@
-import { executeGraphql } from "@/api/graphqlApi";
+import { executeGraphql } from "@/app/api/graphqlApi";
 import { CategoriesGetByCategorySlugDocument, CategoriesGetListDocument } from "@/gql/graphql";
 
 export const getCategories = async () => {

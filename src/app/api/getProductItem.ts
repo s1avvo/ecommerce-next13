@@ -3,7 +3,7 @@ import {
 	ProductGetVariantsListDocument,
 	type ProductListItemFragment,
 } from "@/gql/graphql";
-import { executeGraphql } from "@/api/graphqlApi";
+import { executeGraphql } from "@/app/api/graphqlApi";
 
 export const getProductById = async (id: ProductListItemFragment["id"]) => {
 	const graphqlResponse = await executeGraphql({

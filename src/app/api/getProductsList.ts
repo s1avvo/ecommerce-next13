@@ -8,7 +8,7 @@ import {
 	ProductsCountByCategorySlugDocument,
 	type ProductOrderByInput,
 } from "@/gql/graphql";
-import { executeGraphql } from "@/api/graphqlApi";
+import { executeGraphql } from "@/app/api/graphqlApi";
 
 export const getProductsList = async (
 	limit: number,

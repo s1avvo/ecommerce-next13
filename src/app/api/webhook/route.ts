@@ -1,5 +1,5 @@
 import { type NextRequest } from "next/server";
-import { executeGraphql } from "@/api/graphqlApi";
+import { executeGraphql } from "@/app/api/graphqlApi";
 import { ProductUpdateAverageRatingDocument } from "@/gql/graphql";
 
 export type ReviewPost = {
@@ -17,6 +17,8 @@ export type ReviewPost = {
 
 export async function POST(request: NextRequest) {
 	const body = (await request.json()) as ReviewPost;
+
+	console.log(body);
 
 	const averageReview = await executeGraphql({
 		query: ProductUpdateAverageRatingDocument,

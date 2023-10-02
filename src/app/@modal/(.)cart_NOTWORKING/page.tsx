@@ -1,4 +1,4 @@
-import { getCartByIdFromCookie } from "@/api/cart";
+import { getCartByIdFromCookie } from "@/app/api/cart";
 import { CartModalButton } from "@/components/atoms/CartModalButton";
 import { CartModal } from "@/components/atoms/CartModal";
 

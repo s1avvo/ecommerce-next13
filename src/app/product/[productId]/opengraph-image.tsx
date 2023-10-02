@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/server";
-import { getProductById } from "@/api/getProductItem";
+import { getProductById } from "@/app/api/getProductItem";
 
 export const runtime = "edge";
 export const alt = "Ecommerce";

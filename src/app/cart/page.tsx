@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { getCartByIdFromCookie } from "@/api/cart";
+import { getCartByIdFromCookie } from "@/app/api/cart";
 import { formatPrice } from "@/utils";
 import { IncrementProductQuantity } from "@/components/atoms/IncrementProductQuantity";
 import { DeleteProductFromCartButton } from "@/components/atoms/DeleteProductFromCartButton";

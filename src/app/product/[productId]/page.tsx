@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { type Metadata } from "next";
-import { getProductsSuggestedList } from "@/api/getProductsList";
-import { getProductById } from "@/api/getProductItem";
+import { getProductsSuggestedList } from "@/app/api/getProductsList";
+import { getProductById } from "@/app/api/getProductItem";
 import { SingleProduct } from "@/components/organisms/SingleProduct";
-import { getProductReview } from "@/api/review";
+import { getProductReview } from "@/app/api/review";
 import { Loading } from "@/components/atoms/Loading";
 import { SingleProductReview } from "@/components/organisms/SingleProductReview";
 import { SuggestedProductList } from "@/components/organisms/SuggestedProductList";

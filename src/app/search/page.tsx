@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getSearchProductsList } from "@/api/getProductsList";
+import { getSearchProductsList } from "@/app/api/getProductsList";
 import { ProductList } from "@/components/organisms/ProductList";
 
 type SearchPageProps = {

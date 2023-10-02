@@ -1,5 +1,5 @@
-import { getCollections } from "@/api/getCollectionsList";
-import { getProductsList } from "@/api/getProductsList";
+import { getCollections } from "@/app/api/getCollectionsList";
+import { getProductsList } from "@/app/api/getProductsList";
 import { ProductList } from "@/components/organisms/ProductList";
 import { ActiveLink } from "@/components/atoms/ActiveLink";
 
