@@ -17,7 +17,6 @@ export type ReviewPost = {
 
 export async function POST(request: NextRequest) {
 	const body = (await request.json()) as ReviewPost;
-	const review = await request.text();
 
 	const averageReview = await executeGraphql({
 		query: ProductUpdateAverageRatingDocument,
@@ -31,10 +30,7 @@ export async function POST(request: NextRequest) {
 		return new Response(null, { status: 400 });
 	}
 
-	console.log("Body Json", body);
-	console.log("Product text", review);
-
-	return new Response(averageReview.updateProduct?.id, { status: 204 });
+	return new Response(averageReview.updateProduct?.id, { status: 201 });
 
 	// if (
 	// 	typeof body === "object"
