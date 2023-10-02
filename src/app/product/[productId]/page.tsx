@@ -45,13 +45,11 @@ export default async function Product({ params }: ProductProps) {
 					</Suspense>
 				</aside>
 			)}
-			{reviews && (
-				<aside>
-					<Suspense fallback={<Loading />}>
-						<SingleProductReview productId={params.productId} reviews={reviews} />
-					</Suspense>
-				</aside>
-			)}
+			<aside>
+				<Suspense fallback={<Loading />}>
+					<SingleProductReview productId={params.productId} reviews={reviews} />
+				</Suspense>
+			</aside>
 		</main>
 	);
 }
