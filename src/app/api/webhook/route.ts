@@ -33,7 +33,10 @@ export async function POST(request: NextRequest) {
 				return acc + edge.node.rating;
 			}, 0);
 
-			averageRating = Math.floor(total / productReviewsRating.reviewsConnection.aggregate.count);
+			averageRating =
+				total === 0
+					? 0
+					: Math.floor(total / productReviewsRating.reviewsConnection.aggregate.count);
 		}
 
 		const averageRatingResponse = await executeGraphql({
