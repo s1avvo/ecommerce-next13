@@ -18,7 +18,7 @@ export type ReviewPostRequest = {
 export async function POST(request: NextRequest) {
 	const body = (await request.json()) as ReviewPostRequest;
 
-	if (typeof body === "object" && body && "data" in body && body.data.product.id === "string") {
+	if (body && body.data && body.data.product.id) {
 		let averageRating = 0;
 
 		const productReviewsRating = await executeGraphql({
