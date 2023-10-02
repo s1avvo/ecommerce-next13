@@ -1,8 +1,8 @@
 import { type NextRequest } from "next/server";
 import { executeGraphql } from "@/app/api/graphqlApi";
-import { ProductUpdateAverageRatingDocument } from "@/gql/graphql";
+import { ProductGetReviewsRatingDocument, ProductUpdateAverageRatingDocument } from "@/gql/graphql";
 
-export type ReviewPost = {
+export type ReviewPostRequest = {
 	operation: string;
 	data: {
 		content: string;
@@ -16,35 +16,36 @@ export type ReviewPost = {
 };
 
 export async function POST(request: NextRequest) {
-	const body = (await request.json()) as ReviewPost;
+	const body = (await request.json()) as ReviewPostRequest;
 
-	console.log(body);
+	if (typeof body === "object" && body && "data" in body && body.data.product.id === "string") {
+		let averageRating = 0;
 
-	const averageReview = await executeGraphql({
-		query: ProductUpdateAverageRatingDocument,
-		variables: {
-			id: body.data.product.id,
-			ratingAverage: body.data.rating,
-		},
-	});
+		const productReviewsRating = await executeGraphql({
+			query: ProductGetReviewsRatingDocument,
+			variables: {
+				id: body.data.product.id,
+			},
+		});
 
-	if (!averageReview) {
+		if (productReviewsRating && productReviewsRating.reviewsConnection.edges.length > 0) {
+			const total = productReviewsRating.reviewsConnection.edges.reduce((acc, edge) => {
+				return acc + edge.node.rating;
+			}, 0);
+
+			averageRating = Math.floor(total / productReviewsRating.reviewsConnection.aggregate.count);
+		}
+
+		const averageRatingResponse = await executeGraphql({
+			query: ProductUpdateAverageRatingDocument,
+			variables: {
+				id: body.data.product.id,
+				averageRating,
+			},
+		});
+
+		return new Response(averageRatingResponse.updateProduct?.id, { status: 201 });
+	} else {
 		return new Response(null, { status: 400 });
 	}
-
-	return new Response(averageReview.updateProduct?.id, { status: 201 });
-
-	// if (
-	// 	typeof body === "object"
-	// 	// body &&
-	// 	// "productId" in body &&
-	// 	// typeof body.productId === "string"
-	// ) {
-	// 	console.log("Body Json", body);
-	// 	console.log("Product text", review);
-	//
-	// 	return new Response(review, { status: 204 });
-	// } else {
-	// 	return new Response(null, { status: 400 });
-	// }
 }
