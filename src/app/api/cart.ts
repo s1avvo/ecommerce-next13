@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { revalidateTag } from "next/cache";
-import { executeGraphql } from "@/api/graphqlApi";
+import { executeGraphql } from "@/app/api/graphqlApi";
 import {
 	CartCreateOrderDocument,
 	CartGetByIdDocument,

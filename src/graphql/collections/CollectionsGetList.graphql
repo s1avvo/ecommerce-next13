@@ -3,5 +3,9 @@ query CollectionsGetList {
         id
         name
         slug
+        image {
+            url
+            fileName
+        }
     }
 }

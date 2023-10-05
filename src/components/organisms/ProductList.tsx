@@ -14,9 +14,7 @@ export const ProductList = ({ products }: ProductsListProps) => {
 			className="my-5 grid w-full gap-12 px-6 sm:grid-cols-2 sm:px-36 md:grid-cols-4"
 			data-testid="products-list"
 		>
-			{products.map((product) => (
-				<ProductListItem key={product.id} product={product} />
-			))}
+			{products?.map((product) => <ProductListItem key={product.id} product={product} />)}
 		</ul>
 	);
 };

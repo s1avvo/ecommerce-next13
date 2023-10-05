@@ -35,11 +35,11 @@ export const SingleProductReview = ({ productId, reviews }: ReviewFormOptimistic
 	}
 
 	return (
-		<section className="flex flex-row gap-3 px-6 py-6 sm:grid-cols-3 sm:px-36">
-			<div className="h-96 w-full basis-1/3">
+		<section className="flex flex-col gap-10 px-6 py-6 sm:flex-row sm:px-36">
+			<div className="h-96 w-full sm:basis-1/3">
 				<form
 					ref={ref}
-					className="flex flex-col gap-2 px-6"
+					className="flex flex-col gap-2"
 					action={addOptimisticReviews}
 					data-testid="add-review-form"
 				>
@@ -59,11 +59,13 @@ export const SingleProductReview = ({ productId, reviews }: ReviewFormOptimistic
 					<SubmitButton label={"ADD REVIEW"} />
 				</form>
 			</div>
-			<div className="h-auto w-full basis-2/3">
-				{optimisticReview.map((review) => (
-					<Review key={review.id} review={review} />
-				))}
-			</div>
+			{reviews && (
+				<div className="h-auto w-full sm:basis-2/3">
+					{optimisticReview.map((review) => (
+						<Review key={review.id} review={review} />
+					))}
+				</div>
+			)}
 		</section>
 	);
 };

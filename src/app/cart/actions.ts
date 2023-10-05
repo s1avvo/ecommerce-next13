@@ -1,6 +1,6 @@
 "use server";
 import { revalidateTag } from "next/cache";
-import { executeGraphql } from "@/api/graphqlApi";
+import { executeGraphql } from "@/app/api/graphqlApi";
 import { CartDeleteProductDocument, CartSetProductQuantityDocument } from "@/gql/graphql";
 
 export const changeItemQuantity = async (itemId: string, quantity: number, price: number) => {

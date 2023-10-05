@@ -1,6 +1,6 @@
 "use server";
 import { type ReviewItemFragment } from "@/gql/graphql";
-import { createReview, publishReview } from "@/api/review";
+import { createReview, publishReview } from "@/app/api/review";
 
 export const addReview = async (productId: string, formData: FormData) => {
 	const reviewForm: ReviewItemFragment = {

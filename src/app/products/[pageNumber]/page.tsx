@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { type Route } from "next";
 import { type ProductOrderByInput } from "@/gql/graphql";
 import { Pagination } from "@/components/organisms/Pagination";
-import { getProductsCount, getProductsList } from "@/api/getProductsList";
+import { getProductsCount, getProductsList } from "@/app/api/getProductsList";
 import { ProductList } from "@/components/organisms/ProductList";
 import { SortSelect } from "@/components/atoms/SortSelect";
 

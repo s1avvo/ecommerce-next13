@@ -1,4 +1,4 @@
-import { executeGraphql } from "@/api/graphqlApi";
+import { executeGraphql } from "@/app/api/graphqlApi";
 import { CollectionsGetCollectionBySlugDocument, CollectionsGetListDocument } from "@/gql/graphql";
 
 export const getCollections = async () => {

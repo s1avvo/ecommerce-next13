@@ -11,6 +11,8 @@ type OrderByType = {
 const ORDER_LIST: OrderByType[] = [
 	{ label: "PriceAsc.", value: "price_ASC" },
 	{ label: "PriceDesc.", value: "price_DESC" },
+	{ label: "RatingAsc.", value: "averageRating_ASC" },
+	{ label: "RatingDesc.", value: "averageRating_DESC" },
 ];
 export const SortSelect = () => {
 	const router = useRouter();
@@ -27,7 +29,11 @@ export const SortSelect = () => {
 			>
 				<option disabled>Sort by</option>
 				{ORDER_LIST.map(({ label, value }) => (
-					<option key={value} value={value} data-testid="sort-by-price">
+					<option
+						key={value}
+						value={value}
+						data-testid={value.includes("price") ? "sort-by-price" : "sort-by-rating"}
+					>
 						{label}
 					</option>
 				))}

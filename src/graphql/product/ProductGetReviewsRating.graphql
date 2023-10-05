@@ -1,0 +1,14 @@
+query ProductGetReviewsRating($id: ID!) {
+	reviewsConnection(where: {product: {id: $id}}) {
+		edges {
+			node {
+				rating
+			}
+		}
+		aggregate {
+			count
+		}
+	}
+}
+
+

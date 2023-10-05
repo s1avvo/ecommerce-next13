@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import { type Metadata } from "next";
-import { getProductsListByCollectionSlag } from "@/api/getProductsList";
+import { getProductsListByCollectionSlag } from "@/app/api/getProductsList";
 import { ProductList } from "@/components/organisms/ProductList";
-import { getCollectionsBySlug } from "@/api/getCollectionsList";
+import { getCollectionsBySlug } from "@/app/api/getCollectionsList";
 
 type CollectionPageProps = {
 	params: {

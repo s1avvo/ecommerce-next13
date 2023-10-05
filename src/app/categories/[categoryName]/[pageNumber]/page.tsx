@@ -1,9 +1,12 @@
 import { type Metadata, type Route } from "next";
 import { notFound } from "next/navigation";
 import { Pagination } from "@/components/organisms/Pagination";
-import { getProductsCountInCategory, getProductsListByCategorySlug } from "@/api/getProductsList";
+import {
+	getProductsCountInCategory,
+	getProductsListByCategorySlug,
+} from "@/app/api/getProductsList";
 import { ProductList } from "@/components/organisms/ProductList";
-import { getCategoriesBySlug } from "@/api/getCategoriesList";
+import { getCategoriesBySlug } from "@/app/api/getCategoriesList";
 import { SortSelect } from "@/components/atoms/SortSelect";
 import { type ProductOrderByInput } from "@/gql/graphql";
 
