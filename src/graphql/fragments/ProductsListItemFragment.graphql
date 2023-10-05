@@ -8,4 +8,5 @@ fragment ProductListItem on Product {
 	images(first: 1) {
 		...ProductImage
 	}
+	averageRating
 }
