@@ -1,4 +1,5 @@
 import { type NextRequest } from "next/server";
+import { revalidatePath } from "next/cache";
 import { executeGraphql } from "@/app/api/graphqlApi";
 import { ProductGetReviewsRatingDocument, ProductUpdateAverageRatingDocument } from "@/gql/graphql";
 
@@ -46,6 +47,9 @@ export async function POST(request: NextRequest) {
 				averageRating,
 			},
 		});
+
+		revalidatePath(`/product/${body.data.product.id}`);
+		revalidatePath(`/products`);
 
 		return new Response(averageRatingResponse.updateProduct?.id, { status: 201 });
 	} else {
