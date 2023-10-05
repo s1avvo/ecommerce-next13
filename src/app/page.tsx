@@ -1,3 +1,4 @@
+import NextImage from "next/image";
 import { getCollections } from "@/app/api/getCollectionsList";
 import { getProductsList } from "@/app/api/getProductsList";
 import { ProductList } from "@/components/organisms/ProductList";
@@ -15,10 +16,16 @@ export default async function Home() {
 			<main className="flex min-h-screen flex-col items-center p-12">
 				<h1>Home</h1>
 				<section>
-					<ul className="mt-5 flex">
+					<ul className="grid grid-cols-3 gap-3">
 						{collections.map((value) => (
 							<li key={value.id}>
 								<ActiveLink href={`/collections/${value.slug}`} exact>
+									<NextImage
+										src={value.image.url}
+										alt={value.image.fileName}
+										height={400}
+										width={400}
+									/>
 									{value.name}
 								</ActiveLink>
 							</li>
