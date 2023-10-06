@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
 		});
 
 		revalidatePath(`/product/${body.data.product.id}`);
-		revalidatePath(`/products`);
+		revalidatePath(`/`);
 
 		return new Response(averageRatingResponse.updateProduct?.id, { status: 201 });
 	} else {
