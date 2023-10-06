@@ -46,6 +46,7 @@ export async function POST(request: NextRequest) {
 				id: body.data.product.id,
 				averageRating,
 			},
+			cache: "no-store",
 		});
 
 		revalidatePath(`/product/${body.data.product.id}`);
