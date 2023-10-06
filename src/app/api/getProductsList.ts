@@ -2,7 +2,6 @@ import {
 	ProductGetListDocument,
 	ProductsGetListByCategorySlagDocument,
 	ProductsGetListByCollectionSlagDocument,
-	ProductsGetSuggestedListDocument,
 	ProductsCountDocument,
 	ProductsGetListSearchDocument,
 	ProductsCountByCategorySlugDocument,
@@ -51,17 +50,6 @@ export const getProductsListByCollectionSlag = async (collection: string) => {
 		query: ProductsGetListByCollectionSlagDocument,
 		variables: {
 			slag: collection,
-		},
-	});
-
-	return graphqlResponse.products;
-};
-
-export const getProductsSuggestedList = async (collection: string) => {
-	const graphqlResponse = await executeGraphql({
-		query: ProductsGetSuggestedListDocument,
-		variables: {
-			name: collection,
 		},
 	});
 
