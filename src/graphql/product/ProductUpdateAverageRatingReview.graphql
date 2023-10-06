@@ -3,6 +3,9 @@ mutation ProductUpdateAverageRating($averageRating: Int!, $id: ID!) {
 		id
 		averageRating
 	}
+	publishProduct(to: PUBLISHED, where:{id: $id}) {
+		id
+	}
 }
 
 
