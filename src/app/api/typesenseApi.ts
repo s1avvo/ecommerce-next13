@@ -1,5 +1,5 @@
 import { SearchClient as TypesenseSearchClient } from "typesense";
-import Typesense from "typesense/src/Typesense";
+import { Client } from "typesense/src/Typesense";
 
 export const searchClient = new TypesenseSearchClient({
 	nodes: [
@@ -13,7 +13,7 @@ export const searchClient = new TypesenseSearchClient({
 	connectionTimeoutSeconds: 2,
 });
 
-export const adminClient = new Typesense.Client({
+export const adminClient = new Client({
 	nodes: [
 		{
 			host: `${process.env.TYPESENSE_HOST}`,
