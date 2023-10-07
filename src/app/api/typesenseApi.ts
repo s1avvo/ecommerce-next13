@@ -1,7 +1,6 @@
-import { SearchClient as TypesenseSearchClient } from "typesense";
-import { Client } from "typesense/src/Typesense";
+import { Client, SearchClient } from "typesense";
 
-export const searchClient = new TypesenseSearchClient({
+export const searchClient = new SearchClient({
 	nodes: [
 		{
 			host: `${process.env.TYPESENSE_HOST}`,
