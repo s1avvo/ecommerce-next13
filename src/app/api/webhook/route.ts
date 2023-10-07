@@ -2,6 +2,7 @@ import { type NextRequest } from "next/server";
 import { revalidatePath } from "next/cache";
 import { executeGraphql } from "@/app/api/graphqlApi";
 import { ProductGetReviewsRatingDocument, ProductUpdateAverageRatingDocument } from "@/gql/graphql";
+import { adminClient } from "@/app/api/typesenseApi";
 
 export type ReviewPostRequest = {
 	operation: string;
@@ -48,6 +49,11 @@ export async function POST(request: NextRequest) {
 			},
 			cache: "no-store",
 		});
+
+		await adminClient
+			.collections("productVec")
+			.documents(`${body.data.product.id}`)
+			.update({ averageRating: averageRating });
 
 		revalidatePath(`/product/${body.data.product.id}`);
 		revalidatePath(`/`);
