@@ -3,11 +3,11 @@ import { useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { deleteItem } from "@/app/cart/actions";
 
-type DeleteProductFromCartButtonProps = {
+type CartDeleteProductButtonProps = {
 	itemId: string;
 };
 
-export const DeleteProductFromCartButton = ({ itemId }: DeleteProductFromCartButtonProps) => {
+export const CartDeleteProductButton = ({ itemId }: CartDeleteProductButtonProps) => {
 	const router = useRouter();
 	const [isPending, startTransition] = useTransition();
 
@@ -15,7 +15,7 @@ export const DeleteProductFromCartButton = ({ itemId }: DeleteProductFromCartBut
 		<button
 			type="submit"
 			disabled={isPending}
-			className="ml-5 bg-amber-600 px-6 py-3 text-neutral-100 disabled:cursor-wait disabled:bg-amber-700"
+			className="w-full rounded-md bg-amber-600 py-3 text-neutral-100 disabled:cursor-wait disabled:bg-amber-700"
 			onClick={() =>
 				startTransition(async () => {
 					await deleteItem(itemId);
