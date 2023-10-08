@@ -3,32 +3,36 @@ import { revalidateTag } from "next/cache";
 import { executeGraphql } from "@/app/api/graphqlApi";
 import {
 	CartCreateOrderDocument,
+	type CartFragment,
 	CartGetByIdDocument,
 	CartUpsertProductDocument,
 } from "@/gql/graphql";
 
 export const getOrCreateCart = async () => {
 	const cart = await getCartByIdFromCookie();
-	if (cart) {
+	if (cart?.id) {
 		return cart;
+	} else {
+		cookies().delete("cartId");
+
+		const { createOrder: newCart } = await executeGraphql({
+			query: CartCreateOrderDocument,
+			variables: {},
+			cache: "no-store",
+		});
+
+		if (!newCart) {
+			throw new Error("Failed to create cart");
+		}
+
+		cookies().set("cartId", newCart.id, {
+			httpOnly: true,
+			sameSite: "lax",
+			// secure: true
+		});
+
+		return newCart;
 	}
-
-	const { createOrder: newCart } = await executeGraphql({
-		query: CartCreateOrderDocument,
-		variables: {},
-		cache: "no-store",
-	});
-	if (!newCart) {
-		throw new Error("Failed to create cart");
-	}
-
-	cookies().set("cartId", newCart.id, {
-		httpOnly: true,
-		sameSite: "lax",
-		// secure: true
-	});
-
-	return newCart;
 };
 
 export const getCartByIdFromCookie = async () => {
@@ -48,10 +52,11 @@ export const getCartByIdFromCookie = async () => {
 };
 
 export const addOrUpdateProductToCart = async (
-	cartId: string,
+	// cartId: string,
 	productId: string,
-	orderItemId: string | undefined,
-	quantity: number,
+	cart: CartFragment,
+	// orderItemId: string | undefined,
+	// quantity: number,
 	total: number,
 ) => {
 	/* poprzednia wersja
@@ -75,18 +80,41 @@ export const addOrUpdateProductToCart = async (
 		},
 	}); */
 
-	await executeGraphql({
-		query: CartUpsertProductDocument,
-		variables: {
-			cartId,
-			productId,
-			orderItemId,
-			quantity,
-			total,
-			hash: crypto.randomUUID(),
-		},
-		cache: "no-store",
-	});
+	const productInCart = cart?.orderItems?.find((item) => item?.product?.id === productId);
 
-	revalidateTag("cart");
+	if (!productInCart) {
+		revalidateTag("cart");
+		await executeGraphql({
+			query: CartUpsertProductDocument,
+			variables: {
+				cartId: cart.id,
+				productId,
+				orderItemId: undefined,
+				quantity: 1,
+				total,
+			},
+			cache: "no-store",
+		});
+	}
+
+	if (productInCart && productInCart.product) {
+		revalidateTag("cart");
+		await executeGraphql({
+			query: CartUpsertProductDocument,
+			variables: {
+				cartId: cart.id,
+				productId,
+				orderItemId: productInCart.id,
+				quantity: productInCart.quantity + 1,
+				total: total * (productInCart.quantity + 1),
+			},
+			cache: "no-store",
+		});
+	}
+
+	// orderItem ? orderItem.id : undefined,
+	// orderItem ? orderItem.quantity + 1 : 1,
+	// orderItem ? product.price * (orderItem.quantity + 1) : product.price,
+
+	// revalidateTag("cart");
 };
