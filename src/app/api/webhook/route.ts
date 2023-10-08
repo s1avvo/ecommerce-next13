@@ -2,6 +2,7 @@ import { type NextRequest } from "next/server";
 import { revalidatePath } from "next/cache";
 import { executeGraphql } from "@/app/api/graphqlApi";
 import { ProductGetReviewsRatingDocument, ProductUpdateAverageRatingDocument } from "@/gql/graphql";
+import { adminClient } from "@/app/api/typesenseApi";
 
 export type ReviewPostRequest = {
 	operation: string;
@@ -46,10 +47,18 @@ export async function POST(request: NextRequest) {
 				id: body.data.product.id,
 				averageRating,
 			},
+			cache: "no-store",
 		});
 
+		const updateTypesense = await adminClient
+			.collections("products")
+			.documents(`${body.data.product.id}`)
+			.update({ averageRating: averageRating });
+
+		console.log(updateTypesense);
+
 		revalidatePath(`/product/${body.data.product.id}`);
-		revalidatePath(`/products`);
+		revalidatePath(`/`);
 
 		return new Response(averageRatingResponse.updateProduct?.id, { status: 201 });
 	} else {

@@ -1,5 +1,0 @@
-query ProductsGetSuggestedList($name: String!)  {
-	products(where: { categories_some: { name: $name }} first: 4) {
-		...ProductListItem
-	}
-}

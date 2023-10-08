@@ -20,6 +20,7 @@ export const executeGraphql = async <TResult, TVariables>({
 		body: JSON.stringify({
 			query,
 			variables,
+			refresh: cache === "no-store" ? `${crypto.randomUUID()}}` : undefined,
 		}),
 		headers: {
 			"Content-Type": "application/json",
