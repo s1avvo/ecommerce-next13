@@ -83,6 +83,7 @@ export const addOrUpdateProductToCart = async (
 			orderItemId,
 			quantity,
 			total,
+			hash: crypto.randomUUID(),
 		},
 		cache: "no-store",
 	});
