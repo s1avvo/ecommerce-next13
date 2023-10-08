@@ -1,4 +1,4 @@
-import NextImage from "next/image";
+// import NextImage from "next/image";
 import { IncrementProductQuantity } from "@/components/atoms/IncrementProductQuantity";
 import { formatPrice } from "@/utils";
 import { CartDeleteProductButton } from "@/components/atoms/CartDeleteProductButton";
@@ -22,17 +22,17 @@ export const CartProductList = ({ cart }: CartProductListProps) => {
 					item.product && (
 						<li key={item.product.id}>
 							<article className="grid grid-cols-3 sm:grid-cols-6 sm:gap-5">
-								<div className="col-span-1 flex items-center justify-center">
-									{item.product.images[0] && (
-										<NextImage
-											src={item.product.images[0].url}
-											alt={item.product.images[0].fileName}
-											width={100}
-											height={100}
-										/>
-									)}
-								</div>
-								<span className="col-span-2 flex items-center justify-start">
+								{/*<div className="col-span-1 flex items-center justify-center">*/}
+								{/*	{item.product.images[0] && (*/}
+								{/*		<NextImage*/}
+								{/*			src={item.product.images[0].url}*/}
+								{/*			alt={item.product.images[0].fileName}*/}
+								{/*			width={100}*/}
+								{/*			height={100}*/}
+								{/*		/>*/}
+								{/*	)}*/}
+								{/*</div>*/}
+								<span className="col-span-3 flex items-center justify-start">
 									{item.product.name}
 								</span>
 								<div className="col-span-1 flex items-center justify-center">
