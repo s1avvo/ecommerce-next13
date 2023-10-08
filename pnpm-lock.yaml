@@ -56,6 +56,12 @@ dependencies:
   react-dom:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
+  stripe:
+    specifier: ^13.9.0
+    version: 13.9.0
+  stripe-event-types:
+    specifier: ^3.0.0
+    version: 3.0.0(stripe@13.9.0)
   tailwindcss:
     specifier: 3.3.3
     version: 3.3.3
@@ -1807,10 +1813,6 @@ packages:
 
   /@types/ms@0.7.32:
     resolution: {integrity: sha512-xPSg0jm4mqgEkNhowKgZFBNtwoEwF6gJ4Dhww+GFpm3IgtNseHQZ5IqdNwnquZEoANxyDAKDRAdVo4Z72VvD/g==}
-    dev: false
-
-  /@types/node@20.8.0:
-    resolution: {integrity: sha512-LzcWltT83s1bthcvjBmiBvGJiiUe84NWRHkw+ZV6Fr41z2FbIzvc815dk2nQ3RAKMuN2fkenM/z3Xv2QzEpYxQ==}
     dev: false
 
   /@types/node@20.8.2:
@@ -4158,7 +4160,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 20.8.0
+      '@types/node': 20.8.2
       merge-stream: 2.0.0
       supports-color: 8.1.1
     dev: false
@@ -5388,6 +5390,13 @@ packages:
     engines: {node: '>=6.0.0'}
     dev: true
 
+  /qs@6.11.2:
+    resolution: {integrity: sha512-tDNIz22aBzCDxLtVH++VnTfzxlfeK5CbqohpSqpJgj1Wg/cQbStNAz3NuqCs5vV+pjBsK4x4pN9HlVh7rcYRiA==}
+    engines: {node: '>=0.6'}
+    dependencies:
+      side-channel: 1.0.4
+    dev: false
+
   /queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
@@ -5845,6 +5854,22 @@ packages:
   /strip-json-comments@3.1.1:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
+
+  /stripe-event-types@3.0.0(stripe@13.9.0):
+    resolution: {integrity: sha512-PMsF7TP3R2HEjEDw4Xxr5KBDGGrTzecBIMeAz97UmwVdmfwUKvbue45o/Ik6WdidSCaQbeunff5fUZqr/OVGng==}
+    peerDependencies:
+      stripe: '>=10.0.0'
+    dependencies:
+      stripe: 13.9.0
+    dev: false
+
+  /stripe@13.9.0:
+    resolution: {integrity: sha512-sQAqodCvaw/iYWauHHdOWlFGj0oZj/3A51zs4rG5PN3SUJUFSSjtnbc9q5Djpls0iz3nXz2UwjzAdKHVP4dVqQ==}
+    engines: {node: '>=12.*'}
+    dependencies:
+      '@types/node': 20.8.2
+      qs: 6.11.2
+    dev: false
 
   /style-to-object@0.4.2:
     resolution: {integrity: sha512-1JGpfPB3lo42ZX8cuPrheZbfQ6kqPPnPHlKMyeRYtfKD+0jG+QsXgXN57O/dvJlzlB2elI6dGmrPnl5VPQFPaA==}
