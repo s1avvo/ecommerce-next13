@@ -15,7 +15,7 @@ export const getCartByIdFromCookie = async () => {
 		query: CartGetByIdDocument,
 		variables: { id: cartId },
 		// cache: "no-store",
-		next: { tags: ["cart"] },
+		// next: { tags: ["cart"] },
 	});
 
 	return cart;
@@ -25,7 +25,7 @@ export const createCartAndAddProduct = async (productId: string, total: number) 
 	const { createOrder: newCart } = await executeGraphql({
 		query: CartCreatAndAddProductDocument,
 		variables: { productId, total },
-		cache: "no-store",
+		// cache: "no-store",
 	});
 
 	if (!newCart) {
