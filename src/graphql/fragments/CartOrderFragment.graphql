@@ -4,9 +4,7 @@ fragment Cart on Order {
         id
         quantity
         product {
-            id
-            name
-            price
+            ...SingleProductItem
         }
     }
 }
