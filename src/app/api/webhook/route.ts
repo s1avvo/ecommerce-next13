@@ -50,10 +50,12 @@ export async function POST(request: NextRequest) {
 			cache: "no-store",
 		});
 
-		await adminClient
-			.collections("productVec")
+		const updateTypesense = await adminClient
+			.collections("products")
 			.documents(`${body.data.product.id}`)
 			.update({ averageRating: averageRating });
+
+		console.log(updateTypesense);
 
 		revalidatePath(`/product/${body.data.product.id}`);
 		revalidatePath(`/`);
