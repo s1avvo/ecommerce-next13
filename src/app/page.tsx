@@ -14,7 +14,7 @@ export default async function Home() {
 	return (
 		<>
 			<main className="flex min-h-screen flex-col items-center py-6">
-				<section className="flex w-full items-center justify-center border-b-4 border-amber-700 bg-neutral-100 py-6">
+				<section className="flex w-full items-center justify-center border-b-4 border-amber-600 bg-neutral-100 py-6">
 					<ul className="grid gap-x-6 sm:grid-cols-3">
 						{collections.map((value) => (
 							<li key={value.id}>
@@ -32,7 +32,7 @@ export default async function Home() {
 					</ul>
 				</section>
 				<section className="flex w-full flex-col items-center justify-center">
-					<h2 className="self-start bg-amber-700 px-6 py-1 text-2xl text-neutral-100 sm:px-36">
+					<h2 className="self-start rounded-br-md bg-amber-600 px-6 py-1 text-2xl text-neutral-100 sm:px-36">
 						TOP RATED
 					</h2>
 					<ProductList products={products} />

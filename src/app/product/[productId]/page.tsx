@@ -32,11 +32,11 @@ export default async function Product({ params }: ProductProps) {
 		<main className="min-h-screen">
 			<SingleProduct product={product} />
 
-			<figure data-testid="related-products">
+			<section data-testid="related-products">
 				<Suspense fallback={<Loading />}>
 					<SuggestedProductList name={product.name} />
 				</Suspense>
-			</figure>
+			</section>
 			<Suspense fallback={<Loading />}>
 				<SingleProductReview productId={params.productId} />
 			</Suspense>
