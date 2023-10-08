@@ -17,7 +17,6 @@ export const changeItemQuantity = async (itemId: string, quantity: number, price
 			itemId,
 			quantity,
 			total: price * quantity,
-			hash: crypto.randomUUID(),
 		},
 		cache: "no-store",
 	});
