@@ -1,5 +1,5 @@
 import { type SingleProductItemFragment } from "@/gql/graphql";
-import { addOrUpdateProductToCart } from "@/app/api/cart";
+import { addOrUpdateProductToCart, getCartByIdFromCookie } from "@/app/api/cart";
 import { SubmitButton } from "@/components/atoms/SubmitButton";
 
 type AddToCartProps = {
@@ -9,7 +9,8 @@ type AddToCartProps = {
 export const AddToCart = ({ product }: AddToCartProps) => {
 	async function addProductToCartAction() {
 		"use server";
-		await addOrUpdateProductToCart(product.id, product.price);
+		const cart = await getCartByIdFromCookie();
+		await addOrUpdateProductToCart(product.id, product.price, cart);
 	}
 
 	return (

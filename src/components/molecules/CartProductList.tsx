@@ -10,10 +10,10 @@ type CartProductListProps = {
 };
 
 export const CartProductList = ({ cart }: CartProductListProps) => {
-	const total = cart.orderItems.reduce(
-		(acc, item) => acc + item.quantity * (item.product?.price ?? 0),
-		0,
-	);
+	// const total = cart.orderItems.reduce(
+	// 	(acc, item) => acc + item.quantity * (item.product?.price ?? 0),
+	// 	0,
+	// );
 
 	return (
 		<>
@@ -52,10 +52,10 @@ export const CartProductList = ({ cart }: CartProductListProps) => {
 						</li>
 					),
 			)}
-			<li className="flex items-center justify-between bg-neutral-200 p-5">
-				<div className="text-2xl">
-					Total: <span className="font-semibold">{formatPrice(total / 100)}</span>
-				</div>
+			<li className="flex items-center justify-end bg-neutral-200 p-5">
+				{/*<div className="text-2xl">*/}
+				{/*	Total: <span className="font-semibold">{formatPrice(total / 100)}</span>*/}
+				{/*</div>*/}
 				<CartPaymentButon cart={cart} />
 			</li>
 		</>

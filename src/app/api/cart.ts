@@ -1,8 +1,9 @@
 import { cookies } from "next/headers";
-import { revalidateTag } from "next/cache";
+// import { revalidateTag } from "next/cache";
 import { executeGraphql } from "@/app/api/graphqlApi";
 import {
 	CartCreatAndAddProductDocument,
+	type CartFragment,
 	CartGetByIdDocument,
 	CartUpsertProductDocument,
 } from "@/gql/graphql";
@@ -14,8 +15,8 @@ export const getCartByIdFromCookie = async () => {
 	const { order: cart } = await executeGraphql({
 		query: CartGetByIdDocument,
 		variables: { id: cartId },
-		cache: "no-store",
-		next: { tags: ["cart"] },
+		// cache: "no-store",
+		// next: { tags: ["cart"] },
 	});
 
 	return cart;
@@ -28,7 +29,7 @@ export const createCartAndAddProduct = async (productId: string, total: number) 
 		// cache: "no-store",
 	});
 
-	revalidateTag("cart");
+	// revalidateTag("cart");
 
 	if (!newCart) {
 		throw new Error("Failed to create cart");
@@ -43,26 +44,28 @@ export const createCartAndAddProduct = async (productId: string, total: number) 
 	return newCart;
 };
 
-export const addOrUpdateProductToCart = async (productId: string, total: number) => {
-	const cart = await getCartByIdFromCookie();
+export const addOrUpdateProductToCart = async (
+	productId: string,
+	total: number,
+	cart: CartFragment | null | undefined,
+) => {
 	if (!cart) {
 		await createCartAndAddProduct(productId, total);
-		return;
+	} else {
+		const orderItem = cart?.orderItems?.find((item) => item?.product?.id === productId);
+
+		await executeGraphql({
+			query: CartUpsertProductDocument,
+			variables: {
+				cartId: cart.id,
+				productId,
+				orderItemId: orderItem ? orderItem.id : undefined,
+				quantity: orderItem ? orderItem.quantity + 1 : 1,
+				total: orderItem ? total * (orderItem.quantity + 1) : total,
+			},
+			// cache: "no-store",
+		});
+
+		// revalidateTag("cart");
 	}
-
-	const orderItem = cart?.orderItems?.find((item) => item?.product?.id === productId);
-
-	await executeGraphql({
-		query: CartUpsertProductDocument,
-		variables: {
-			cartId: cart.id,
-			productId,
-			orderItemId: orderItem ? orderItem.id : undefined,
-			quantity: orderItem ? orderItem.quantity + 1 : 1,
-			total: orderItem ? total * (orderItem.quantity + 1) : total,
-		},
-		// cache: "no-store",
-	});
-
-	revalidateTag("cart");
 };

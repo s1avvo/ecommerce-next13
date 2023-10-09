@@ -36,14 +36,12 @@ export default async function Product({ params }: ProductProps) {
 		<main className="min-h-screen">
 			<SingleProduct product={product} />
 
-			<section data-testid="related-products">
+			<aside data-testid="related-products">
 				<Suspense fallback={<Loading />}>
 					<SuggestedProductList name={product.name} />
+					<SingleProductReview productId={params.productId} />
 				</Suspense>
-			</section>
-			<Suspense fallback={<Loading />}>
-				<SingleProductReview productId={params.productId} />
-			</Suspense>
+			</aside>
 		</main>
 	);
 }

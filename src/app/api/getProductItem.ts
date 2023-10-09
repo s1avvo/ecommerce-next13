@@ -11,7 +11,7 @@ export const getProductById = async (id: ProductListItemFragment["id"]) => {
 		variables: {
 			id: id,
 		},
-		cache: "no-store",
+		// cache: "no-store",
 	});
 
 	return graphqlResponse.product;
