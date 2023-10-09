@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-// import { revalidateTag } from "next/cache";
+import { revalidateTag } from "next/cache";
 import { executeGraphql } from "@/app/api/graphqlApi";
 import {
 	CartCreatAndAddProductDocument,
@@ -16,7 +16,7 @@ export const getCartByIdFromCookie = async () => {
 		query: CartGetByIdDocument,
 		variables: { id: cartId },
 		// cache: "no-store",
-		// next: { tags: ["cart"] },
+		next: { tags: ["cart"] },
 	});
 
 	return cart;
@@ -29,7 +29,7 @@ export const createCartAndAddProduct = async (productId: string, total: number) 
 		// cache: "no-store",
 	});
 
-	// revalidateTag("cart");
+	revalidateTag("cart");
 
 	if (!newCart) {
 		throw new Error("Failed to create cart");
@@ -66,6 +66,6 @@ export const addOrUpdateProductToCart = async (
 			// cache: "no-store",
 		});
 
-		// revalidateTag("cart");
+		revalidateTag("cart");
 	}
 };
