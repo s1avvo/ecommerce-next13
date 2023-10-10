@@ -1,6 +1,5 @@
 import { type SingleProductItemFragment } from "@/gql/graphql";
 import { addOrUpdateProductToCart, getOrCreateCart } from "@/app/api/cart";
-import { SubmitButton } from "@/components/atoms/SubmitButton";
 
 type AddToCartProps = {
 	product: SingleProductItemFragment;
@@ -9,6 +8,7 @@ type AddToCartProps = {
 export const AddToCart = ({ product }: AddToCartProps) => {
 	async function addProductToCartAction() {
 		"use server";
+		console.log("Click");
 
 		const cart = await getOrCreateCart();
 		const orderItem = cart.orderItems.find((item) =>
@@ -26,8 +26,15 @@ export const AddToCart = ({ product }: AddToCartProps) => {
 
 	return (
 		<div className="mt-10 flex items-center">
-			<form action={addProductToCartAction}>
-				<SubmitButton label={"ADD TO CART"} />
+			<form>
+				<button
+					formAction={addProductToCartAction}
+					type="submit"
+					className="rounded-md bg-amber-600 px-6 py-3 text-neutral-100"
+					data-testid="add-to-cart-button"
+				>
+					ADD TO CART
+				</button>
 			</form>
 		</div>
 	);
