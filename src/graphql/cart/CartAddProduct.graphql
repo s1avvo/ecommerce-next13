@@ -1,7 +1,0 @@
-mutation CartAddProduct($cartId: ID!, $productId: ID!, $total: Int!) {
-    createOrderItem(
-        data: {quantity: 1, total: $total, order: {connect: {id: $cartId}}, product: {connect: {id: $productId}}}
-    ) {
-        id
-    }
-}

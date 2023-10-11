@@ -4,7 +4,6 @@ import { CollectionsGetCollectionBySlugDocument, CollectionsGetListDocument } fr
 export const getCollections = async () => {
 	const graphqlResponse = await executeGraphql({
 		query: CollectionsGetListDocument,
-		variables: {},
 	});
 
 	return graphqlResponse.collections;

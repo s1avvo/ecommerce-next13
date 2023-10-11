@@ -26,6 +26,9 @@ export const createReview = async (review: ReviewItemFragment) => {
 		variables: {
 			...review,
 		},
+		headers: {
+			Authorization: `Bearer ${process.env.HYGRAPH_MUTATION_TOKEN}`,
+		},
 	});
 
 	return reviewId;
@@ -36,6 +39,9 @@ export const publishReview = async (reviewID: string) => {
 		query: ReviewPublishDocument,
 		variables: {
 			id: reviewID,
+		},
+		headers: {
+			Authorization: `Bearer ${process.env.HYGRAPH_MUTATION_TOKEN}`,
 		},
 	});
 

@@ -2,7 +2,7 @@ import { executeGraphql } from "@/app/api/graphqlApi";
 import { CategoriesGetByCategorySlugDocument, CategoriesGetListDocument } from "@/gql/graphql";
 
 export const getCategories = async () => {
-	const graphqlResponse = await executeGraphql({ query: CategoriesGetListDocument, variables: {} });
+	const graphqlResponse = await executeGraphql({ query: CategoriesGetListDocument });
 
 	return graphqlResponse.categories;
 };
