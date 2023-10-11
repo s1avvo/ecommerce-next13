@@ -4,7 +4,7 @@ import { type Metadata } from "next";
 import { getProductById } from "@/app/api/getProductItem";
 import { SingleProduct } from "@/components/organisms/SingleProduct";
 import { Loading } from "@/components/atoms/Loading";
-import { SingleProductReview } from "@/components/organisms/SingleProductReview";
+// import { SingleProductReview } from "@/components/organisms/SingleProductReview";
 import { SuggestedProductList } from "@/components/organisms/SuggestedProductList";
 
 type ProductProps = {
@@ -37,9 +37,9 @@ export default async function Product({ params }: ProductProps) {
 					<SuggestedProductList name={product.name} />
 				</Suspense>
 			</section>
-			<Suspense fallback={<Loading />}>
-				<SingleProductReview productId={params.productId} />
-			</Suspense>
+			{/*<Suspense fallback={<Loading />}>*/}
+			{/*	<SingleProductReview productId={params.productId} />*/}
+			{/*</Suspense>*/}
 		</main>
 	);
 }
