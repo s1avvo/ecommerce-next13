@@ -3,7 +3,6 @@ import { getCollections } from "@/app/api/getCollectionsList";
 import { getProductsList } from "@/app/api/getProductsList";
 import { ProductList } from "@/components/organisms/ProductList";
 import { ActiveLink } from "@/components/atoms/ActiveLink";
-import { SuggestedProductList } from "@/components/organisms/SuggestedProductList";
 
 export default async function Home() {
 	const collections = await getCollections();
@@ -32,7 +31,6 @@ export default async function Home() {
 						))}
 					</ul>
 				</section>
-				<SuggestedProductList name={"Unisex Zip Hoodie"} />
 				<section className="flex w-full flex-col items-center justify-center">
 					<h2 className="self-start rounded-br-md bg-amber-600 px-6 py-1 text-2xl text-neutral-100 sm:px-36">
 						TOP RATED
