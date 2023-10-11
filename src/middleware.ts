@@ -11,6 +11,8 @@ export default authMiddleware({
 		"/categories/hoodies(.*)",
 		"/categories/t-shirts",
 		"/categories/t-shirts(.*)",
+		"/collections",
+		"/collections(.*)",
 		"/products",
 		"/products(.*)",
 		"/product",
