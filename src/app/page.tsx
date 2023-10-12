@@ -19,12 +19,20 @@ export default async function Home() {
 						{collections.map((value) => (
 							<li key={value.id}>
 								<ActiveLink href={`/collections/${value.slug}`} exact>
-									<NextImage
-										src={value.image.url}
-										alt={value.image.fileName}
-										height={400}
-										width={400}
-									/>
+									<div className="relative aspect-video h-72 w-auto">
+										<NextImage
+											placeholder="blur"
+											blurDataURL={`/assets/${value.image.fileName.split("_").at(-1)}`}
+											src={value.image.url}
+											alt={value.image.fileName}
+											quality={75}
+											fill
+											sizes="(max-width: 440px) 100vw,
+											(max-width: 768px) 75vw,
+											(max-width: 1060px) 50vw,
+											33vw"
+										/>
+									</div>
 									<p className="text-lg">{value.name}</p>
 								</ActiveLink>
 							</li>
