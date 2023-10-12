@@ -1,0 +1,5 @@
+query OrdersGetByEmail($email: String) {
+    orders(where: {email: $email}) {
+        ...Order
+    }
+}

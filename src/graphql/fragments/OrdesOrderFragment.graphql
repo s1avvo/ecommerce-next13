@@ -1,0 +1,13 @@
+fragment Order on Order {
+    id
+    email
+    orderItems {
+        id
+        total
+        quantity
+        createdAt
+        product {
+            ...SingleProductItem
+        }
+    }
+}

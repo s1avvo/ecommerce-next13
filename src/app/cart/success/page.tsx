@@ -1,5 +1,5 @@
 import Stripe from "stripe";
-import { addStripeCheckoutId } from "@/app/api/ordet";
+import { addStripeCheckoutId } from "@/app/api/order";
 
 export default async function CartSuccess({
 	searchParams,
@@ -18,7 +18,11 @@ export default async function CartSuccess({
 	const stripeCheckoutSession = await stripe.checkout.sessions.retrieve(searchParams.session_id);
 
 	if (stripeCheckoutSession.metadata?.cartId) {
-		await addStripeCheckoutId(stripeCheckoutSession.metadata.cartId, stripeCheckoutSession.id);
+		await addStripeCheckoutId(
+			stripeCheckoutSession.metadata.cartId,
+			stripeCheckoutSession.customer_details?.email ?? "",
+			stripeCheckoutSession.id,
+		);
 	}
 
 	return <div>{stripeCheckoutSession.payment_status}</div>;

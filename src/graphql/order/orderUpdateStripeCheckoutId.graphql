@@ -1,5 +1,5 @@
-mutation OrderUpdateCheckoutStripeId($id: ID, $stripeCheckoutId: String) {
-    updateOrder(data: {stripeCheckoutId: $stripeCheckoutId}, where: {id: $id}) {
+mutation OrderUpdateCheckoutStripeId($id: ID, $email: String, $stripeCheckoutId: String) {
+    updateOrder(data: {email: $email, stripeCheckoutId: $stripeCheckoutId}, where: {id: $id}) {
         id
     }
 }
