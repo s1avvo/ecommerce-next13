@@ -18,6 +18,10 @@ export const generateMetadata = async ({ params }: ProductProps): Promise<Metada
 	return {
 		title: product?.name,
 		description: product?.description,
+		openGraph: {
+			title: product?.name,
+			description: product?.description,
+		},
 	};
 };
 
