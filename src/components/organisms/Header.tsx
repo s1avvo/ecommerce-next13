@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ShoppingBagIcon, UserIcon } from "@heroicons/react/24/outline";
+import { ShoppingBagIcon, UserIcon, ListBulletIcon } from "@heroicons/react/24/outline";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { Navbar } from "@/components/molecules/Navbar";
 import { SearchInput } from "@/components/atoms/SearchInput";
@@ -16,6 +16,9 @@ export const Header = async () => {
 				<SearchInput />
 				<SignedIn>
 					<UserButton afterSignOutUrl="/" />
+					<Link href={"/orders"}>
+						<ListBulletIcon className="h-5 w-5 cursor-pointer text-neutral-800" />
+					</Link>
 				</SignedIn>
 				<SignedOut>
 					<SignInButton>

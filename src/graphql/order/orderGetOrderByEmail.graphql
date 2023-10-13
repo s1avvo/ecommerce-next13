@@ -1,5 +1,5 @@
 query OrdersGetByEmail($email: String) {
-    orders(where: {email: $email}) {
+    orders(where: {email: $email} stage: DRAFT) {
         ...Order
     }
 }

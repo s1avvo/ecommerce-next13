@@ -1,6 +1,7 @@
 fragment Order on Order {
     id
     email
+    total
     orderItems {
         id
         total

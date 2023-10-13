@@ -23,7 +23,11 @@ export const Order = async (email: string) => {
 		variables: {
 			email,
 		},
+		cache: "no-store",
+		headers: {
+			Authorization: `Bearer ${process.env.HYGRAPH_QUERY_TOKEN}`,
+		},
 	});
 
-	return graphqlResponse;
+	return graphqlResponse.orders;
 };
