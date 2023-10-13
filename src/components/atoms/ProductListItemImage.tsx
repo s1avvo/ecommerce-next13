@@ -7,17 +7,15 @@ type ProductListItemImageProps = {
 
 export const ProductListItemImage = ({ src, alt }: ProductListItemImageProps) => {
 	return (
-		<div className="relative h-96 w-auto">
+		<div className="flex aspect-square max-w-[220px] items-center justify-center">
 			<NextImage
-				fill
+				width={220}
+				height={220}
 				placeholder="empty"
 				src={src}
 				alt={alt}
-				sizes="(max-width: 480px) 100vw,
-                (max-width: 768px) 75vw,
-                (max-width: 1060px) 50vw,
-                33vw"
 				className="object-contain object-center transition-transform hover:opacity-70"
+				quality={50}
 				priority
 			/>
 		</div>

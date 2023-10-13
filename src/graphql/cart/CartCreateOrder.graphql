@@ -1,5 +1,0 @@
-mutation CartCreateOrder {
-    createOrder(data: {total: 0}) {
-        ...Cart
-    }
-}

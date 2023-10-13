@@ -57,7 +57,7 @@ export const getProductsListByCollectionSlag = async (collection: string) => {
 };
 
 export const getProductsCount = async () => {
-	const graphqlResponse = await executeGraphql({ query: ProductsCountDocument, variables: {} });
+	const graphqlResponse = await executeGraphql({ query: ProductsCountDocument });
 
 	return graphqlResponse.productsConnection.aggregate.count;
 };

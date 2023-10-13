@@ -19,6 +19,9 @@ export const changeItemQuantity = async (itemId: string, quantity: number, price
 			total: price * quantity,
 		},
 		cache: "no-store",
+		headers: {
+			Authorization: `Bearer ${process.env.HYGRAPH_MUTATION_TOKEN}`,
+		},
 	});
 
 	revalidateTag("cart");
@@ -32,6 +35,9 @@ export const deleteItem = (itemId: string) => {
 			itemId,
 		},
 		// cache: "no-cache",
+		headers: {
+			Authorization: `Bearer ${process.env.HYGRAPH_MUTATION_TOKEN}`,
+		},
 	});
 
 	revalidateTag("cart");
