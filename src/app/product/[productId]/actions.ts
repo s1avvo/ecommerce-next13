@@ -5,12 +5,14 @@ import { createReview, publishReview } from "@/app/api/review";
 import { addOrUpdateProductToCart } from "@/app/api/cart";
 
 export const addProductToCartAction = async (formData: FormData) => {
-	await addOrUpdateProductToCart(
+	const id = await addOrUpdateProductToCart(
 		String(formData.get("productId")),
 		Number(formData.get("productPrice")),
 	);
 
 	revalidateTag("cart");
+
+	return id;
 };
 
 export const addReviewAction = async (productId: string, formData: FormData) => {

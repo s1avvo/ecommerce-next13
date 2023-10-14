@@ -60,9 +60,8 @@ export const addOrUpdateProductToCart = async (productId: string, total: number)
 	const cartId = await executeGraphql({
 		query: CartUpsertProductDocument,
 		variables: {
-			cartId: cart.id,
 			productId,
-			orderItemId: orderItem ? orderItem.id : undefined,
+			orderId: orderItem ? orderItem.id : cart.id,
 			quantity: orderItem ? orderItem.quantity + 1 : 1,
 			total: orderItem ? total * (orderItem.quantity + 1) : total,
 		},
@@ -71,5 +70,6 @@ export const addOrUpdateProductToCart = async (productId: string, total: number)
 			Authorization: `Bearer ${process.env.HYGRAPH_MUTATION_TOKEN}`,
 		},
 	});
+
 	return cartId.upsertOrderItem?.id;
 };
