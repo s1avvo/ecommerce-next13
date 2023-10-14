@@ -1,7 +1,7 @@
-mutation CartUpsertProduct($orderItemId: ID, $cartId: ID!, $productId: ID!, $total: Int!, $quantity: Int!) {
+mutation CartUpsertProduct($orderId: ID, $productId: ID!, $total: Int!, $quantity: Int!) {
     upsertOrderItem(
-        upsert: {create: {quantity: 1, total: $total, order: {connect: {id: $cartId}}, product: {connect: {id: $productId}}}, update: {quantity: $quantity, total: $total}}
-        where: {id: $orderItemId}
+        upsert: {create: {quantity: 1, total: 0, order: {connect: {id: $orderId}}, product: {connect: {id: $productId}}}, update: {quantity: $quantity, total: $total}}
+        where: {id: $orderId}
     ) {
         id
     }
