@@ -7,8 +7,6 @@ import {
 } from "@/app/api/getProductsList";
 import { ProductList } from "@/components/organisms/ProductList";
 import { getCategoriesBySlug } from "@/app/api/getCategoriesList";
-import { SortSelect } from "@/components/atoms/SortSelect";
-import { type ProductOrderByInput } from "@/gql/graphql";
 
 const LIMIT = 4;
 
@@ -17,9 +15,19 @@ type ProductsCategoryPageProps = {
 		pageNumber: string;
 		categoryName: string;
 	};
-	searchParams: {
-		sort: ProductOrderByInput;
-	};
+};
+
+export const generateStaticParams = async ({ params }: ProductsCategoryPageProps) => {
+	const productsCount = await getProductsCountInCategory(params.categoryName);
+	if (productsCount) {
+		const pages = Math.ceil(productsCount / LIMIT);
+
+		return Array.from({ length: pages }, (_, index) => ({
+			categoryName: params.categoryName,
+			pageNumber: `${index + 1}`,
+		}));
+	}
+	return [];
 };
 
 export const generateMetadata = async ({
@@ -32,29 +40,26 @@ export const generateMetadata = async ({
 	};
 };
 
-export default async function ProductsCategoryPage({
-	params,
-	searchParams,
-}: ProductsCategoryPageProps) {
+export default async function ProductsCategoryPage({ params }: ProductsCategoryPageProps) {
 	const { pageNumber = "1", categoryName } = params;
-	const { sort } = searchParams;
 
 	const currentPage = Number(pageNumber);
 	const offset = (currentPage - 1) * LIMIT;
 
-	const productsPagination = await getProductsListByCategorySlug(categoryName, LIMIT, offset, sort);
+	const productsPagination = await getProductsListByCategorySlug(categoryName, LIMIT, offset);
 	if (!productsPagination || productsPagination.products.length === 0) {
 		return notFound();
 	}
+
 	const products = productsPagination.products.map((v) => v.node);
 	const productsCount = await getProductsCountInCategory(categoryName);
 	const category = await getCategoriesBySlug(categoryName);
 
 	return (
-		/*className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8"*/
-		<section className="flex min-h-screen flex-col items-center p-12">
-			<h2>{category?.name}</h2>
-			<SortSelect />
+		<section className="flex w-full flex-col">
+			<div className="flex h-24 w-full flex-row items-center justify-between border-t-4 border-amber-600 bg-neutral-100">
+				<h1 className="px-6 py-1 text-2xl text-amber-600 sm:px-36">{category?.name}</h1>
+			</div>
 			<ProductList products={products} />
 			<Pagination
 				limit={LIMIT}

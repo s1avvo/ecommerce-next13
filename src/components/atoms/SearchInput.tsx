@@ -42,7 +42,12 @@ export const SearchInput = () => {
 				onChange={handleSearchOnChange}
 			/>
 			<button type="submit">
-				<MagnifyingGlassIcon className="h-5 w-5 text-neutral-800" />
+				<MagnifyingGlassIcon
+					name="search"
+					className="h-5 w-5 text-neutral-800"
+					title="Search"
+					aria-label="search-icon"
+				/>
 			</button>
 		</form>
 	);

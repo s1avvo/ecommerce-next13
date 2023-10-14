@@ -10,7 +10,7 @@ export const createCartAndAddFirstProduct = async (productId: string, total: num
 	const { createOrder: newCart } = await executeGraphql({
 		query: CartCreatAndAddProductDocument,
 		variables: { productId, total },
-		// cache: "no-store",
+		cache: "no-store",
 		headers: {
 			Authorization: `Bearer ${process.env.HYGRAPH_MUTATION_TOKEN}`,
 		},
@@ -66,7 +66,7 @@ export const addOrUpdateProductToCart = async (productId: string, total: number)
 			quantity: orderItem ? orderItem.quantity + 1 : 1,
 			total: orderItem ? total * (orderItem.quantity + 1) : total,
 		},
-		// cache: "no-store",
+		cache: "no-store",
 		headers: {
 			Authorization: `Bearer ${process.env.HYGRAPH_MUTATION_TOKEN}`,
 		},

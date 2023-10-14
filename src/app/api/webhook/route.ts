@@ -47,7 +47,6 @@ export async function POST(request: NextRequest) {
 				id: body.data.product.id,
 				averageRating,
 			},
-			cache: "no-store",
 		});
 
 		const updateTypesense = await adminClient

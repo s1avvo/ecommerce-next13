@@ -10,23 +10,38 @@ export const Header = async () => {
 	const quantity = cart?.orderItems.length ?? 0;
 
 	return (
-		<header className="bg-wh-900 text-wh-10 flex w-full items-center justify-between px-6 py-4 sm:px-36">
+		<header className="bg-wh-900 text-wh-10 flex w-full flex-wrap items-center justify-between gap-3 px-6 py-4 sm:px-36">
 			<Navbar />
 			<div className="flex items-center justify-between gap-6">
 				<SearchInput />
 				<SignedIn>
 					<UserButton afterSignOutUrl="/" />
 					<Link href={"/orders"}>
-						<ListBulletIcon className="h-5 w-5 cursor-pointer text-neutral-800" />
+						<ListBulletIcon
+							name="orders"
+							title="Orders"
+							className="h-5 w-5 cursor-pointer text-neutral-800"
+							aria-label="orders-icon"
+						/>
 					</Link>
 				</SignedIn>
 				<SignedOut>
 					<SignInButton>
-						<UserIcon className="h-5 w-5 cursor-pointer text-neutral-800" />
+						<UserIcon
+							name="user"
+							className="h-5 w-5 cursor-pointer text-neutral-800"
+							title="User"
+							aria-label="user-icon"
+						/>
 					</SignInButton>
 				</SignedOut>
 				<Link href={"/cart"}>
-					<ShoppingBagIcon className="h-5 w-5 text-neutral-800" />
+					<ShoppingBagIcon
+						name="cart"
+						className="h-5 w-5 text-neutral-800"
+						title="Cart"
+						aria-label="shop-icon"
+					/>
 				</Link>
 				<span className="font-semibold">{quantity}</span>
 			</div>

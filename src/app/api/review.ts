@@ -1,4 +1,3 @@
-import { revalidateTag } from "next/cache";
 import { executeGraphql } from "@/app/api/graphqlApi";
 import {
 	type ReviewItemFragment,
@@ -44,6 +43,4 @@ export const publishReview = async (reviewID: string) => {
 			Authorization: `Bearer ${process.env.HYGRAPH_MUTATION_TOKEN}`,
 		},
 	});
-
-	revalidateTag("review");
 };

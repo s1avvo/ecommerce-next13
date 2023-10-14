@@ -5,7 +5,7 @@ import { SingleProductReviewInput } from "@/components/atoms/SingleProductReview
 import { SingleProductReviewRatingInput } from "@/components/atoms/SingleProductReviewRatingInput";
 import { SubmitButton } from "@/components/atoms/SubmitButton";
 import { Review } from "@/components/atoms/Review";
-import { addReview } from "@/app/product/[productId]/actions";
+import { addReviewAction } from "@/app/product/[productId]/actions";
 
 type SingleProductReviewFormProps = {
 	productId: string;
@@ -29,7 +29,7 @@ export const SingleProductReviewForm = ({ productId, reviews }: SingleProductRev
 		};
 
 		setOptimisticReview(newReview);
-		await addReview(productId, formData);
+		await addReviewAction(productId, formData);
 		ref.current?.reset();
 	}
 

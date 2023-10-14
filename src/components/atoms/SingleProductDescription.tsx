@@ -6,15 +6,15 @@ type SingleProductDetailsProps = {
 };
 
 export const SingleProductDescription = ({
-	product: { name, price, categories, description, averageRating },
+	product: { price, categories, description },
 }: SingleProductDetailsProps) => {
 	return (
 		<>
-			<h1>{name}</h1>
-			<h2>{formatPrice(price / 100)}</h2>
-			<p className="mt-5">{description}</p>
+			<p className="mt-5">
+				<span className="font-semibold">Description:</span> {description}
+			</p>
 			<p className="mt-5 font-semibold">Category: {categories[0]?.name}</p>
-			<p className="mt-5 font-semibold">Rating: {averageRating}</p>
+			<h2>{formatPrice(price / 100)}</h2>
 		</>
 	);
 };
