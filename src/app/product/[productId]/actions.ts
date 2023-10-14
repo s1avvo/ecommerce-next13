@@ -1,8 +1,19 @@
 "use server";
+import { revalidateTag } from "next/cache";
 import { type ReviewItemFragment } from "@/gql/graphql";
 import { createReview, publishReview } from "@/app/api/review";
+import { addOrUpdateProductToCart } from "@/app/api/cart";
 
-export const addReview = async (productId: string, formData: FormData) => {
+export const addProductToCartAction = async (formData: FormData) => {
+	await addOrUpdateProductToCart(
+		String(formData.get("productId")),
+		Number(formData.get("productPrice")),
+	);
+
+	revalidateTag("cart");
+};
+
+export const addReviewAction = async (productId: string, formData: FormData) => {
 	const reviewForm: ReviewItemFragment = {
 		id: productId,
 		headline: String(formData.get("headline")),
@@ -19,4 +30,6 @@ export const addReview = async (productId: string, formData: FormData) => {
 	}
 
 	await publishReview(reviewId.id);
+
+	revalidateTag("review");
 };

@@ -4,10 +4,12 @@ import { getRelatedProductsList } from "@/app/api/getRelatedProductsList";
 // const sleep = async (ms: number) => {
 // 	await new Promise((resolve) => setTimeout(resolve, ms));
 // };
-type SuggestedProductListProps = {
+type SingleProductSuggestedProductProps = {
 	name: string;
 };
-export const SuggestedProductList = async ({ name }: SuggestedProductListProps) => {
+export const SingleProductSuggestedProduct = async ({
+	name,
+}: SingleProductSuggestedProductProps) => {
 	// await sleep(3000);
 	const relatedProducts = await getRelatedProductsList(name);
 	return (

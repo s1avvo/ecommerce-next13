@@ -9,10 +9,10 @@ type OrderByType = {
 };
 
 const ORDER_LIST: OrderByType[] = [
-	{ label: "PriceAsc.", value: "price_ASC" },
-	{ label: "PriceDesc.", value: "price_DESC" },
-	{ label: "RatingAsc.", value: "averageRating_ASC" },
-	{ label: "RatingDesc.", value: "averageRating_DESC" },
+	{ label: "Price (Low to High)", value: "price_ASC" },
+	{ label: "Price (High to Low)", value: "price_DESC" },
+	{ label: "Rating (Low to High)", value: "averageRating_ASC" },
+	{ label: "Rating (High to Low)", value: "averageRating_DESC" },
 ];
 export const SortSelect = () => {
 	const router = useRouter();
@@ -20,12 +20,13 @@ export const SortSelect = () => {
 	const searchParams = useSearchParams();
 
 	return (
-		<>
+		<div className="my-6 flex self-end px-6 sm:px-36">
 			<select
 				name="sort-by"
 				id="sort-by-id"
 				value={searchParams.get("sort") || "Sort by"}
 				onChange={(event) => router.push(`${pathname}?sort=${event.target.value}` as Route)}
+				className="block w-48 rounded-md border border-gray-300 bg-gray-50 p-2 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 			>
 				<option disabled>Sort by</option>
 				{ORDER_LIST.map(({ label, value }) => (
@@ -38,6 +39,6 @@ export const SortSelect = () => {
 					</option>
 				))}
 			</select>
-		</>
+		</div>
 	);
 };
