@@ -13,7 +13,7 @@ export const OrderProductList = ({ order }: OrderProductListProps) => {
 				(item) =>
 					item.product && (
 						<li key={item.product.id}>
-							<article className="grid grid-cols-3 sm:grid-cols-4 sm:gap-5">
+							<article className="grid grid-cols-3 px-2 sm:grid-cols-4 sm:gap-3">
 								<div className="col-span-1 flex items-center justify-center">
 									{item.product.images[0] && (
 										<NextImage
@@ -24,7 +24,7 @@ export const OrderProductList = ({ order }: OrderProductListProps) => {
 										/>
 									)}
 								</div>
-								<span className="col-span-2 flex items-center justify-start">
+								<span className="col-span-1 flex items-center justify-start sm:col-span-2">
 									{item.product.name}
 								</span>
 								<div className="col-span-1 flex gap-5">

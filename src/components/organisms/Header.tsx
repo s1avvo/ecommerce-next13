@@ -12,7 +12,7 @@ export const Header = async () => {
 	return (
 		<header className="bg-wh-900 text-wh-10 flex w-full flex-wrap items-center justify-between gap-3 px-6 py-4 sm:px-36">
 			<Navbar />
-			<div className="flex items-center justify-between gap-6">
+			<div className="flex h-20 items-center justify-between gap-3 overflow-x-auto sm:h-auto">
 				<SearchInput />
 				<SignedIn>
 					<UserButton afterSignOutUrl="/" />

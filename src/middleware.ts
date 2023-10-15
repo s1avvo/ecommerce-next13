@@ -19,6 +19,9 @@ export default authMiddleware({
 		"/products(.*)",
 		"/product",
 		"/product(.*)",
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
+		"/policies",
 	],
 });
 

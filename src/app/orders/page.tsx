@@ -30,8 +30,8 @@ export default async function OrdersPage() {
 				</h1>
 			</div>
 			{orders.map((order, index) => (
-				<ul key={order.id} className="mx-auto flex w-full max-w-3xl flex-col gap-5 py-6">
-					<li key={`order-id-${index}`} className="border-b-2 text-lg ">
+				<ul key={order.id} className="mx-auto flex w-full max-w-3xl flex-col gap-5">
+					<li key={`order-id-${index}`} className="border-b-2 px-2 py-6 text-lg">
 						Order: <span className="font-semibold text-amber-600">{order.id}</span>
 					</li>
 					<OrderProductList order={order} />

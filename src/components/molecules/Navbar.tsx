@@ -11,7 +11,7 @@ const navbarList: { href: Route<string>; title: string; exact?: boolean }[] = [
 export const Navbar = async () => {
 	// const categories = await getCategories();
 	return (
-		<nav className="h-8 overflow-x-auto">
+		<nav className="h-9 overflow-x-auto">
 			<ul className="flex items-center justify-between gap-6 whitespace-nowrap">
 				{navbarList.map(({ href, title, exact }, index) => (
 					<li key={index}>
