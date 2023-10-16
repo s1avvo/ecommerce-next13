@@ -1,5 +1,6 @@
 import { type ProductListItemFragment } from "@/gql/graphql";
 import { formatPrice } from "@/utils";
+import { SingleProductReviewRating } from "@/components/atoms/SingleProductRatingStars";
 
 /* można użyc typu ProdctListType pomimo, że nie używamy wszystko atrybutów */
 type ProductListItemDescriptionProps = {
@@ -20,10 +21,7 @@ export const ProductListItemDescription = ({
 					{formatPrice(price / 100)}
 				</p>
 				<div className="mt-1 flex space-x-1">
-					<span>Rating: </span>
-					<p className="text-sm font-semibold text-gray-900" data-testid="product-rating">
-						{averageRating}
-					</p>
+					<SingleProductReviewRating rating={averageRating || 0} />
 				</div>
 			</div>
 		</div>

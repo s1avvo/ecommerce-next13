@@ -1,11 +1,11 @@
 "use client";
-import React, { experimental_useOptimistic as useOptimistic, useRef } from "react";
+import React, { experimental_useOptimistic as useOptimistic, useRef, useState } from "react";
 import { type ReviewItemFragment } from "@/gql/graphql";
 import { SingleProductReviewInput } from "@/components/atoms/SingleProductReviewInput";
-import { SingleProductReviewRatingInput } from "@/components/atoms/SingleProductReviewRatingInput";
 import { SubmitButton } from "@/components/atoms/SubmitButton";
 import { Review } from "@/components/atoms/Review";
 import { addReviewAction } from "@/app/product/[productId]/actions";
+import { RatingStarsForm } from "@/components/atoms/RatingStarsForm";
 
 type SingleProductReviewFormProps = {
 	productId: string;
@@ -13,12 +13,15 @@ type SingleProductReviewFormProps = {
 };
 export const SingleProductReviewForm = ({ productId, reviews }: SingleProductReviewFormProps) => {
 	const ref = useRef<HTMLFormElement>(null);
+	const [stars, setStars] = useState(1);
 	const [optimisticReview, setOptimisticReview] = useOptimistic(
 		reviews,
 		(state, review: ReviewItemFragment) => [...state, review],
 	);
 
 	async function addOptimisticReviews(formData: FormData) {
+		formData.set("rating", `${stars}`);
+
 		const newReview: ReviewItemFragment = {
 			id: productId,
 			headline: String(formData.get("headline")),
@@ -30,7 +33,9 @@ export const SingleProductReviewForm = ({ productId, reviews }: SingleProductRev
 
 		setOptimisticReview(newReview);
 		await addReviewAction(productId, formData);
+
 		ref.current?.reset();
+		setStars(1);
 	}
 
 	return (
@@ -52,7 +57,7 @@ export const SingleProductReviewForm = ({ productId, reviews }: SingleProductRev
 						rows={3}
 						required
 					/>
-					<SingleProductReviewRatingInput />
+					<RatingStarsForm value={stars} onClick={(selectedStars) => setStars(selectedStars)} />
 					<SingleProductReviewInput label={"Name"} type={"text"} name={"name"} />
 					<SingleProductReviewInput label={"Email"} type={"email"} name={"email"} />
 					<SubmitButton label={"ADD REVIEW"} />
