@@ -8,11 +8,12 @@ type RatingStarsInputProps = {
 
 export const RatingStarsForm = ({ value, onClick }: RatingStarsInputProps) => {
 	return (
-		<div className="flex items-center gap-2">
+		<fieldset name="rating" className="flex items-center gap-2">
+			<input type="hidden" name="rating" value={value} />
 			Rating:
 			{Array.from({ length: 5 }, (_, i) => i + 1).map((i) => (
 				<RatingStar key={i} isActive={i <= value} onClick={() => onClick(i)} />
 			))}
-		</div>
+		</fieldset>
 	);
 };

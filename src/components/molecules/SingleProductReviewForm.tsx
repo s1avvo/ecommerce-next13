@@ -20,8 +20,6 @@ export const SingleProductReviewForm = ({ productId, reviews }: SingleProductRev
 	);
 
 	async function addOptimisticReviews(formData: FormData) {
-		formData.set("rating", `${stars}`);
-
 		const newReview: ReviewItemFragment = {
 			id: productId,
 			headline: String(formData.get("headline")),
