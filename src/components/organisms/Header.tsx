@@ -1,18 +1,18 @@
 import Link from "next/link";
 import { ShoppingBagIcon, UserIcon, ListBulletIcon } from "@heroicons/react/24/outline";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
-import { Navbar } from "@/components/molecules/Navbar";
 import { SearchInput } from "@/components/atoms/SearchInput";
 import { getCartByIdFromCookie } from "@/app/api/cart";
+import { NavbarWithHamburger } from "@/components/molecules/NavbarWithHamburger";
 
 export const Header = async () => {
 	const cart = await getCartByIdFromCookie();
 	const quantity = cart?.orderItems.length ?? 0;
 
 	return (
-		<header className="bg-wh-900 text-wh-10 flex w-full flex-wrap items-center justify-between gap-3 px-6 py-4 sm:px-36">
-			<Navbar />
-			<div className="flex h-20 items-center justify-between gap-3 overflow-x-auto sm:h-auto">
+		<header className="bg-wh-900 text-wh-10 flex h-20 w-full items-center justify-between gap-3 overflow-x-auto px-6 py-4 sm:h-auto sm:px-36">
+			<NavbarWithHamburger />
+			<div className="flex  items-center justify-between gap-3 ">
 				<SearchInput />
 				<SignedIn>
 					<UserButton afterSignOutUrl="/" />

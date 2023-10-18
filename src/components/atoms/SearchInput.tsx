@@ -2,7 +2,7 @@
 import { type FormEvent, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useDebounce } from "use-debounce";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+// import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 export const SearchInput = () => {
 	const router = useRouter();
@@ -27,7 +27,7 @@ export const SearchInput = () => {
 		<form className="flex justify-between gap-3" action={`/search`} onSubmit={handleSearchOnSubmit}>
 			<input
 				name="serch"
-				className="w-[200px] rounded-md border p-2 "
+				className="w-[200px] rounded-md border p-2"
 				type="search"
 				role="searchbox"
 				placeholder="Search..."
@@ -35,14 +35,16 @@ export const SearchInput = () => {
 				value={query}
 				onChange={(event) => setQuery(event.target.value)}
 			/>
-			<button type="submit" name="search">
-				<MagnifyingGlassIcon
-					name="search-icon"
-					className="h-5 w-5 text-neutral-800"
-					title="Search"
-					aria-label="search-icon"
-				/>
-			</button>
+			{/*<span className="absolute inset-y-0 left-0 flex items-center pl-2">*/}
+			{/*	<button type="submit" name="search">*/}
+			{/*		<MagnifyingGlassIcon*/}
+			{/*			name="search-icon"*/}
+			{/*			className="h-5 w-5 text-neutral-800"*/}
+			{/*			title="Search"*/}
+			{/*			aria-label="search-icon"*/}
+			{/*		/>*/}
+			{/*	</button>*/}
+			{/*</span>*/}
 		</form>
 	);
 };
