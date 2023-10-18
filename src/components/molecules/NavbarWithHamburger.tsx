@@ -32,7 +32,7 @@ export const NavbarWithHamburger = () => {
 
 				{/*sm screen navbar*/}
 				<div className="flex sm:hidden">
-					{isOpen ? (
+					{!isOpen ? (
 						<Bars3Icon width={28} height={28} onClick={() => setIsOpen(!isOpen)} />
 					) : (
 						<XMarkIcon width={28} height={28} onClick={() => setIsOpen(!isOpen)} />
@@ -43,7 +43,7 @@ export const NavbarWithHamburger = () => {
 					className={clsx(
 						"absolute left-0 top-[75px] z-10 flex h-screen w-full items-start justify-start bg-white duration-500 ease-in md:hidden",
 						`${
-							isOpen &&
+							!isOpen &&
 							"absolute left-[-100%] top-[75px] z-10 flex h-screen w-full items-start justify-start bg-white duration-500 ease-out md:hidden"
 						}`,
 					)}
