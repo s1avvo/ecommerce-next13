@@ -4,7 +4,7 @@ import { type Metadata } from "next";
 import { getProductById } from "@/app/api/getProductItem";
 import { Loading } from "@/components/atoms/Loading";
 import { SingleProductReview } from "@/components/organisms/SingleProductReview";
-import { SingleProductSuggestedProduct } from "@/components/organisms/SingleProductSuggestedProduct";
+// import { SingleProductSuggestedProduct } from "@/components/organisms/SingleProductSuggestedProduct";
 import { SingleProductImage } from "@/components/atoms/SingleProductImage";
 import { SingleProductDescription } from "@/components/atoms/SingleProductDescription";
 import { SingleProductVariantsList } from "@/components/molecules/SingleProductVariantsList";
@@ -61,11 +61,13 @@ export default async function Product({ params }: ProductProps) {
 			</div>
 
 			<aside className="w-full">
-				<div data-testid="related-products">
+				{/*Typesense cloud suspended*/}
+
+				{/*<div data-testid="related-products">
 					<Suspense fallback={<Loading />}>
 						<SingleProductSuggestedProduct name={product.name} />
 					</Suspense>
-				</div>
+				</div>*/}
 				<Suspense fallback={<Loading />}>
 					<SingleProductReview productId={params.productId} />
 				</Suspense>
